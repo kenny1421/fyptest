@@ -1,7 +1,4 @@
-<?php 
-   session_start();
-   include "db_conn.php";
-   if (isset($_SESSION['username']) && isset($_SESSION['id']))   ?>
+
 
 <!DOCTYPE html>
 <!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
