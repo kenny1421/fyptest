@@ -1,9 +1,9 @@
 <?php  
 
 //development connection
-$sname = "localhost";
-$uname = "root";
-$password = "";
+$sname = "mysqltest3.mysql.database.azure.com";
+$uname = "sqltest";
+$password = "Test12345";
 
 $db_name = "my_db";
 
