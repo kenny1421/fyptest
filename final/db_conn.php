@@ -11,6 +11,7 @@ $conn = mysqli_connect($sname, $uname, $password, $db_name);
 
 
 if (!$conn) {
+	echo "HEllo1 world";
 	echo "Connection Failed!";
 	error_log("Error msg " . mysqli_connect_errno());
 	exit();
