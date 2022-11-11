@@ -131,17 +131,6 @@
                                     echo $_GET['NAME'];?>">
                             </div>
 
-                            <div class="form-group">
-                                <label for="name"
-                                class="form-label">Full Name</label>
-                                <input type="text"
-                                class="form-control"
-                                name="name"
-                                id="name"
-                                value="<?php if(isset($_GET['name']))
-                                echo $_GET['name'];?>">
-                            </div>
-
                             <div class= "form-group">
                                 <label for="username"
                                 class="form-label">Username</label>
