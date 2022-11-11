@@ -50,14 +50,9 @@
             <i class='bx bx-collection' ></i>
             <span class="link_name">Manage Task</span>
           </a>
-          <i class='bx bxs-chevron-down arrow' ></i>
         </div>
         <ul class="sub-menu">
           <li><a class="link_name" href="#">Manage Task</a></li>
-          <li><a href="#">Assign Task</a></li>
-          <li><a href="Admin_UploadTask.php">Upload Task</a></li>
-          <li><a href="#">Download Task</a></li>
-          <li><a href="#">Delete Task</a></li>
         </ul>
       </li>
       <li>
