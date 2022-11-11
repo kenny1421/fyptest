@@ -119,6 +119,17 @@
                                     <?php echo $_GET['error']; ?>
                                 </div>
                             <?php } ?>
+				
+			    <div class= "form-group">
+                                <label for="NAME"  
+		                class="form-label">Full Name</label>
+		                <input type="text" 
+                                class="form-control" 
+                                name="NAME" 
+                                id="NAME"
+                                value="<?php if(isset($_GET['NAME']))
+                                    echo $_GET['NAME'];?>">
+                            </div>
 
                             <div class="form-group">
                                 <label for="name"
