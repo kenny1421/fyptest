@@ -120,17 +120,6 @@
           <input type="file" name="myfile"> <br>
           <button type="submit" name="save">Upload</button>
 
-          <div class= "form-group">
-            <label for="category"  
-	            class="form-label">Category</label>
-		            <input type="text" 
-                class="form-control" 
-                name="category" 
-                id="category"
-              value="<?php if(isset($_GET['category']))
-              echo $_GET['category'];?>">
-          </div>
-
         </form>
       </div>
         <div class ="row">
@@ -138,7 +127,6 @@
                     <thead>
                         <th>ID</th>
                         <th>FileName</th>
-                        <th>Category</th>
                         <th>Size (in mb)</th>
                         <th>Downloads</th>
                         <th>Action</th>
@@ -149,7 +137,6 @@
                         <tr>
                             <td><?php echo $file['id'];?></td>
                             <td><?php echo $file['name'];?></td>
-                            <td><?php echo $file['category'];?></td>
                             <td><?php echo $file['size']/1000 . "KB";?></td>
                             <td><?php echo $file['downloads'];?></td>
                             <td>
