@@ -117,8 +117,8 @@
       <div class="row1">
         <form action="Admin_UploadTask.php" class="form" method="post" enctype="multipart/form-data" >
           
-          <input type="file" name="myfile"> <br>
-          <button type="submit" name="save">Upload</button>
+          <input type="file" id="upload-file" name="blob"> <br>
+          <button type="submit" value="Upload" name="save">Upload</button>
 
         </form>
       </div>
