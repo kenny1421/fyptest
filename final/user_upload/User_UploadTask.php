@@ -10,7 +10,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Upload Task</title>
-    <link rel="icon" type="image/png" href="Images/NeuonAI_Logo.png"/>
+    <link rel="icon" type="image/png" href="../Images/NeuonAI_Logo.png"/>
     <!--<title> Drop Down Sidebar Menu | CodingLab </title>-->
     <link rel="stylesheet" href="../css/style.css">
     <!-- Boxiocns CDN Link -->
