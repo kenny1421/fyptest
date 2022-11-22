@@ -198,13 +198,6 @@
         </div>
     </section>
 
-    <script src="js/jquery-3.6.1.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-<script type="text/javascript">
-    swal("Hello");
-</script>
-
   <script>
   let arrow = document.querySelectorAll(".arrow");
   for (var i = 0; i < arrow.length; i++) {
