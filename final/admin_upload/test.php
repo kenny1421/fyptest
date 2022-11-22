@@ -28,6 +28,7 @@ try {
 }
 
 try {
+    $blobClient->createContainer($containerName, $createContainerOptions);
     $fileName = $blobService->uploadBlob($containerName, $_FILES['blob']);
 } catch (ServiceException $serviceException) {
     // Log the exception, most likely connectivity issue
