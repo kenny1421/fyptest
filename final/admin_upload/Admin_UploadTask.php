@@ -155,7 +155,6 @@
     </div>
   </section>
 
-  <script src="script_upload.js"></script>
 
   <script>
   let arrow = document.querySelectorAll(".arrow");
