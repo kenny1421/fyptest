@@ -1,6 +1,6 @@
 <?php
 // connect to the database
-$conn = mysqli_connect('localhost', 'root', '', 'file-management');
+$conn = mysqli_connect('mysqltest3.mysql.database.azure.com', 'sqltest', 'Test12345', 'file-management');
 
 $sql = "SELECT * FROM annotators_files";
 $result = mysqli_query($conn, $sql);
