@@ -19,7 +19,7 @@ if ('' === $connectionString) {
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 $blobService = new AzureBlobService($blobClient);
 
-$containerName = 'AzurePHPDemo';
+$containerName = 'fileupload';
 try {
     $blobService->addBlobContainer($containerName);
     $blobService->setBlobContainerAcl($containerName, AzureBlobService::ACL_BLOB);
