@@ -7,7 +7,7 @@ use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
 
 
 if ([] === $_FILES || !isset($_FILES['save'])) {
-    echo file_get_contents(__DIR__ . '/filesLogic.php');
+    echo file_get_contents(__DIR__ . './filesLogic.php');
     return;
 }
 $connectionString = getenv('STORAGE_CONN_STRING') ?: '';
