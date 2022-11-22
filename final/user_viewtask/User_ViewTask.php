@@ -22,7 +22,7 @@
   <div class="sidebar close">
     <div class="logo-details">
     <a href="../home.php">
-				<img src="Images/NeuonAI_Logo.png" height="75px" width="75px">
+				<img src="../Images/NeuonAI_Logo.png" height="75px" width="75px">
 			</a>
       <span class="logo_name">NeounAI</span>
     </div>
