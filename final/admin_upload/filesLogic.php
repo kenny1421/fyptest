@@ -2,6 +2,11 @@
 // connect to the database
 $conn = mysqli_connect('mysqltest3.mysql.database.azure.com', 'sqltest', 'Test12345', 'my_db');
 
+if ($conn -> connect_errno) {
+  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+  exit();
+}
+
 $sql = "SELECT * FROM files";
 $result = mysqli_query($conn, $sql);
 
@@ -23,19 +28,7 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
     // the physical file on a temporary uploads directory on the server
     $file = $_FILES['myfile']['tmp_name'];
     $size = $_FILES['myfile']['size'];
-echo  "File: " . $file . '<br>';
-    echo "Desc: " . $destination . '<br>';
-    
-    echo "Current Directory: " . getcwd() . "\n";
-    
-      
-// checking whether a file is directory or not
-    $myfile = "./uploads/";
-    if (is_dir($myfile))
-        echo ("$myfile is a directory");
-    else
-        echo ("$myfile is not a directory");
-    exit;
+
     if (!in_array($extension, ['zip', 'pdf', 'docx','json'])) {
         echo "----------------------------You file extension must be .zip, .pdf ,.docx or json!!!----------------------------";
     } elseif ($_FILES['myfile']['size'] > 99999999) { // file shouldn't be larger than 1Megabyte
@@ -43,10 +36,10 @@ echo  "File: " . $file . '<br>';
     } else {
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)) {
-            $sql = "INSERT INTO files (name, size, downloads) VALUES ('$filename', $size, 0)";
-            if (mysqli_query($conn, $sql)) {
-                unset($_FILES['UploadFileField']); header('Location: Admin_UploadTask.php'); exit();
-            }
+            //$sql = "INSERT INTO files (name, size, downloads) VALUES ('$filename', $size, 0)";
+            //if (mysqli_query($conn, $sql)) {
+            //    unset($_FILES['UploadFileField']); header('Location: Admin_UploadTask.php'); exit();
+            //}
         } else {
             echo "----------------------------Failed to upload file.----------------------------";
         }
