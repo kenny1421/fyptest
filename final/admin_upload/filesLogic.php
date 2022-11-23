@@ -42,6 +42,7 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
                 unset($_FILES['UploadFileField']); header('Location: Admin_UploadTask.php'); exit();
             } else {
                 echo "----------------------------Failed to upload file.----------------------------";
+            }
         } else {
             echo "----------------------------Failed to upload file.----------------------------";
         }
