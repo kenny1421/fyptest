@@ -17,7 +17,7 @@ use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
 use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 
 $connectionString = "DefaultEndpointsProtocol=https;AccountName=fypblobstorage1;AccountKey=Vyw5XU83SgGmQurAbrMcjGjPvmzoIeKP2e9KtUg3ZmEt6GqsCYZeQBpyOixej5h40Djzp5WQzd66+AStD/tnTA==;EndpointSuffix=core.windows.net";
-
+$connectionName = "fileupload";
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 
