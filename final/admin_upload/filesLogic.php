@@ -20,7 +20,7 @@ function uploadBlob($filetoUpload, $storageAccount, $containerName, $blobName, $
     $handle = fopen($filetoUpload, "r");
     $fileLen = filesize($filetoUpload);
 
-    $headerResource = "x-ms-blob-cache-control:max-age=3600\nx-ms-blob-type:BlockBlob\nx-ms-date:$currentDate\nx-ms-version:2015-12-11";
+    $headerResource = "sp=racwdli&st=2022-11-23T14:00:13Z&se=2022-11-23T22:00:13Z&spr=https&sv=2021-06-08&sr=c&sig=SIj6cIT4B0kRBwZRZIuPKlTzBTogkroKNnjmHqfjfCo%3D";
     $urlResource = "/$storageAccount/$containerName/$blobName";
 
     $arraysign = array();
@@ -29,7 +29,7 @@ function uploadBlob($filetoUpload, $storageAccount, $containerName, $blobName, $
     $arraysign[] = '';                  /*Content-Language*/  
     $arraysign[] = $fileLen;            /*Content-Length (include value when zero)*/  
     $arraysign[] = '';                  /*Content-MD5*/  
-    $arraysign[] = 'file/zip';         /*Content-Type*/  
+    $arraysign[] = 'application/zip';         /*Content-Type*/  
     $arraysign[] = '';                  /*Date*/  
     $arraysign[] = '';                  /*If-Modified-Since */  
     $arraysign[] = '';                  /*If-Match*/  
@@ -49,8 +49,8 @@ function uploadBlob($filetoUpload, $storageAccount, $containerName, $blobName, $
         'x-ms-blob-cache-control: max-age=3600',
         'x-ms-blob-type: BlockBlob',
         'x-ms-date: ' . $currentDate,
-        'x-ms-version: 2015-12-11',
-        'Content-Type: file/zip',
+        'x-ms-version: 2021-06-08',
+        'Content-Type: apllication/zip',
         'Content-Length: ' . $fileLen
     ];
 
