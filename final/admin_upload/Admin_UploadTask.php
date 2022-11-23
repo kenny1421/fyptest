@@ -5,7 +5,6 @@
    if (isset($_SESSION['username']) && isset($_SESSION['id'])) {   ?>
 
 <!DOCTYPE html>
-<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
@@ -117,8 +116,8 @@
       <div class="row1">
         <form action="Admin_UploadTask.php" class="form" method="post" enctype="multipart/form-data" >
           
-          <input type="file" id="upload-file" name="blob"> <br>
-          <button type="submit" value="Upload" name="save">Upload</button>
+          <input type="file" name="myfile"> <br>
+          <button type="submit" name="save">Upload</button>
 
         </form>
       </div>
@@ -155,6 +154,7 @@
     </div>
   </section>
 
+  <script src="script_upload.js"></script>
 
   <script>
   let arrow = document.querySelectorAll(".arrow");
