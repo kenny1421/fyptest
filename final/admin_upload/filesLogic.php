@@ -37,11 +37,12 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)) {
             $sql = "INSERT INTO files (name, size, downloads) VALUES ('$filename', $size, 0)";
+            print $sql;
             if (mysqli_query($conn, $sql)) {
                 echo "----------------------------Success.----------------------------";
                 unset($_FILES['UploadFileField']); header('Location: Admin_UploadTask.php'); exit();
             } else {
-                echo "----------------------------Failed to upload file.----------------------------";
+                echo "----------------------------Fail Query.----------------------------";
             }
         } else {
             echo "----------------------------Failed to upload file.----------------------------";
