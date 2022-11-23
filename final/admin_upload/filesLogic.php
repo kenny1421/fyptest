@@ -7,7 +7,7 @@ $result = mysqli_query($conn, $sql);
 
 $files = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-require_once 'vendor/autoload.php';
+//require_once 'vendor/autoload.php';
 
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
 use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
@@ -15,7 +15,7 @@ use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
 use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
 use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 
-$connectionString = "DefaultEndpointsProtocol=https;AccountName=fypblobstorage1;AccountKey=Vyw5XU83SgGmQurAbrMcjGjPvmzoIeKP2e9KtUg3ZmEt6GqsCYZeQBpyOixej5h40Djzp5WQzd66+AStD/tnTA==;EndpointSuffix=core.windows.net";
+$connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('account_name').";AccountKey=".getenv('account_key');
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 
