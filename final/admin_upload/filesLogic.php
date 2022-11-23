@@ -7,7 +7,7 @@ $result = mysqli_query($conn, $sql);
 
 $files = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-//require_once 'vendor/autoload.php';
+require_once 'vendor/autoload.php';
 
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
 use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
@@ -19,7 +19,7 @@ $connectionString = "DefaultEndpointsProtocol=https;AccountName=".getenv('accoun
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 
-$fileToUpload = "/uploads/testing.zip";
+$fileToUpload = "./uploads/testing.zip";
 
 if (!isset($_GET["Cleanup"])) {
     // Create container options object.
