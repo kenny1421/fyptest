@@ -1,7 +1,7 @@
 <?php 
    session_start();
    include "db_conn.php";
-   if (isset($_SESSION['username']) && isset($_SESSION['id']))   ?>
+   if (isset($_SESSION['username']) && isset($_SESSION['id'])) {   ?>
 
 <!DOCTYPE html>
 <!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
@@ -11051,3 +11051,6 @@ function polygon_to_bbox(pts) {
   </script>
 </body>
 </html>
+<?php }else{
+header("Location: ../index.php");
+} ?>
