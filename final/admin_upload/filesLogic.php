@@ -13,7 +13,7 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
     $filename = $_FILES['myfile']['name'];
 
     // destination of the file on the server
-    $destination = 'uploads/' . $filename;
+    $destination = '/uploads' . $filename;
 
     // get the file extension
     $extension = pathinfo($filename, PATHINFO_EXTENSION);
@@ -48,7 +48,7 @@ if (isset($_GET['file_id'])) {
     $result = mysqli_query($conn, $sql);
 
     $file = mysqli_fetch_assoc($result);
-    $filepath = 'uploads/' . $file['name'];
+    $filepath = '/uploads' . $file['name'];
 
     if (file_exists($filepath)) {
         header('Content-Description: File Transfer');
@@ -63,7 +63,7 @@ if (isset($_GET['file_id'])) {
         ob_clean();
         flush();
         
-        readfile('uploads/' . $file['name']);
+        readfile('/uploads' . $file['name']);
 
         // Now update downloads count
         $newCount = $file['downloads'] + 1;
