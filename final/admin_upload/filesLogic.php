@@ -9,6 +9,7 @@ $files = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 require_once 'vendor/autoload.php';
 
+use WindowsAzure\Common\ServiceBuilder;
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
 use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
 use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
