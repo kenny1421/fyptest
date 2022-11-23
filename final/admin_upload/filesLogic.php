@@ -29,7 +29,7 @@ function uploadBlob($filetoUpload, $storageAccount, $containerName, $blobName, $
     $arraysign[] = '';                  /*Content-Language*/  
     $arraysign[] = $fileLen;            /*Content-Length (include value when zero)*/  
     $arraysign[] = '';                  /*Content-MD5*/  
-    $arraysign[] = 'image/png';         /*Content-Type*/  
+    $arraysign[] = 'file/zip';         /*Content-Type*/  
     $arraysign[] = '';                  /*Date*/  
     $arraysign[] = '';                  /*If-Modified-Since */  
     $arraysign[] = '';                  /*If-Match*/  
@@ -50,7 +50,7 @@ function uploadBlob($filetoUpload, $storageAccount, $containerName, $blobName, $
         'x-ms-blob-type: BlockBlob',
         'x-ms-date: ' . $currentDate,
         'x-ms-version: 2015-12-11',
-        'Content-Type: image/png',
+        'Content-Type: file/zip',
         'Content-Length: ' . $fileLen
     ];
 
