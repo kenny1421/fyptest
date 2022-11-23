@@ -35,9 +35,7 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
     } elseif ($_FILES['myfile']['size'] > 99999999) { // file shouldn't be larger than 1Megabyte
         echo "----------------------------File too large!----------------------------";
     } else {
-        // move the uploaded (temporary) file to the specified destination
-        if (move_uploaded_file($file, $destination)) {
-            $sql = "INSERT INTO files (name, size, downloads, file) VALUES ('$filename', $size, 0, $upload_the_fking_file)";
+        $sql = "INSERT INTO files (name, size, downloads, file) VALUES ('$filename', $size, 0, $upload_the_fking_file)";
             print $sql;
             if (mysqli_query($conn, $sql)) {
                 echo "----------------------------Success.----------------------------";
@@ -45,9 +43,8 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
             } else {
                 echo "----------------------------Fail Query.----------------------------";
             }
-        } else {
-            echo "----------------------------Failed to upload file.----------------------------";
-        }
+        // move the uploaded (temporary) file to the specified destination
+    
     }
 }
 
