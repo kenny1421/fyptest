@@ -16,6 +16,8 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
     $destination = '/wwwroot/final/admin_upload/uploads/' . $filename;
 
     // get the file extension
+    echo "Testing";
+    echo $filename;
     $extension = pathinfo($filename, PATHINFO_EXTENSION);
     echo $extension;
     // the physical file on a temporary uploads directory on the server
