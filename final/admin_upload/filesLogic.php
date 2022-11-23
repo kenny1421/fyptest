@@ -21,8 +21,8 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
     $destination = './uploads/' . $filename;
 
     // get the file extension
-    echo "Testing";
-    echo $filename;
+    //echo "Testing";
+   // echo $filename;
     $extension = pathinfo($filename, PATHINFO_EXTENSION);
     echo $extension;
     // the physical file on a temporary uploads directory on the server
@@ -30,6 +30,9 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
 
     //$upload_the_fking_file = file_get_contents($_FILES['myfile']['tmp_name']);
     $size = $_FILES['myfile']['size'];
+    
+    echo  "File: " . $file . '<br>';
+    //echo "Desc: " . $destination . '<br>';
 
     if (!in_array($extension, ['zip', 'pdf', 'docx','json'])) {
         echo "----------------------------You file extension must be .zip, .pdf ,.docx or json!!!----------------------------";
