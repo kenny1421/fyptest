@@ -38,8 +38,10 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
         if (move_uploaded_file($file, $destination)) {
             $sql = "INSERT INTO files (name, size, downloads) VALUES ('$filename', $size, 0)";
             if (mysqli_query($conn, $sql)) {
+                echo "----------------------------Success.----------------------------";
                 unset($_FILES['UploadFileField']); header('Location: Admin_UploadTask.php'); exit();
-            }
+            } else {
+                echo "----------------------------Failed to upload file.----------------------------";
         } else {
             echo "----------------------------Failed to upload file.----------------------------";
         }
