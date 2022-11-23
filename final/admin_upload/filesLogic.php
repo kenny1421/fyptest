@@ -19,7 +19,7 @@ $connectionString = "DefaultEndpointsProtocol=https;AccountName=fypblobstorage1;
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 
-$fileToUpload = "/uploads/testing.zip"
+$fileToUpload = "/uploads/testing.zip";
 
 if (!isset($_GET["Cleanup"])) {
     // Create container options object.
@@ -46,7 +46,7 @@ if (!isset($_GET["Cleanup"])) {
     $createContainerOptions->addMetaData("key1", "value1");
     $createContainerOptions->addMetaData("key2", "value2");
 
-      $containerName = "filestore"
+      $containerName = "filestore";
 
     try {
         // Create container.
