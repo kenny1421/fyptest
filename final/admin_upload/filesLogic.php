@@ -1,11 +1,11 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // connect to the database
 $conn = mysqli_connect('mysqltest3.mysql.database.azure.com', 'sqltest', 'Test12345', 'my_db');
 
-if ($conn -> connect_errno) {
-  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
-  exit();
-}
 
 $sql = "SELECT * FROM files";
 $result = mysqli_query($conn, $sql);
@@ -36,10 +36,10 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
     } else {
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)) {
-            //$sql = "INSERT INTO files (name, size, downloads) VALUES ('$filename', $size, 0)";
-            //if (mysqli_query($conn, $sql)) {
-            //    unset($_FILES['UploadFileField']); header('Location: Admin_UploadTask.php'); exit();
-            //}
+            $sql = "INSERT INTO files (name, size, downloads) VALUES ('$filename', $size, 0)";
+            if (mysqli_query($conn, $sql)) {
+                unset($_FILES['UploadFileField']); header('Location: Admin_UploadTask.php'); exit();
+            }
         } else {
             echo "----------------------------Failed to upload file.----------------------------";
         }
