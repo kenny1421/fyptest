@@ -23,9 +23,9 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
     $size = $_FILES['myfile']['size'];
 
     if (!in_array($extension, ['zip', 'pdf', 'docx','json'])) {
-        echo "You file extension must be .zip, .pdf ,.docx or json";
+        echo "----------------------------You file extension must be .zip, .pdf ,.docx or json----------------------------";
     } elseif ($_FILES['myfile']['size'] > 99999999) { // file shouldn't be larger than 1Megabyte
-        echo "File too large!";
+        echo "----------------------------File too large!----------------------------";
     } else {
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)) {
@@ -34,7 +34,7 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
                 unset($_FILES['UploadFileField']); header('Location: User_UploadTask.php'); exit();
             }
         } else {
-            echo "Failed to upload file.";
+            echo "----------------------------Failed to upload file.----------------------------";
         }
     }
 }
