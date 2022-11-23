@@ -26,7 +26,8 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
     $extension = pathinfo($filename, PATHINFO_EXTENSION);
     echo $extension;
     // the physical file on a temporary uploads directory on the server
-    $file = $_FILES['myfile']['tmp_name'];
+    //$file = $_FILES['myfile']['tmp_name'];
+    $upload_the_fking_file = file_get_contents($_FILES['myfile']['tmp_name']);
     $size = $_FILES['myfile']['size'];
 
     if (!in_array($extension, ['zip', 'pdf', 'docx','json'])) {
@@ -36,7 +37,7 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
     } else {
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)) {
-            $sql = "INSERT INTO files (name, size, downloads, file) VALUES ('$filename', $size, 0, $file)";
+            $sql = "INSERT INTO files (name, size, downloads, file) VALUES ('$filename', $size, 0, $upload_the_fking_file)";
             print $sql;
             if (mysqli_query($conn, $sql)) {
                 echo "----------------------------Success.----------------------------";
