@@ -8,7 +8,6 @@ $result = mysqli_query($conn, $sql);
 $files = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 require_once 'vendor/autoload.php';
-require_once "./random_string.php";
 
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
 use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
@@ -17,7 +16,6 @@ use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
 use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 
 $connectionString = "DefaultEndpointsProtocol=https;AccountName=fypblobstorage1;AccountKey=Vyw5XU83SgGmQurAbrMcjGjPvmzoIeKP2e9KtUg3ZmEt6GqsCYZeQBpyOixej5h40Djzp5WQzd66+AStD/tnTA==;EndpointSuffix=core.windows.net";
-$connectionName = "fileupload";
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
 
@@ -34,6 +32,7 @@ if (!isset($_GET["Cleanup"])) {
     // proxys can enumerate blobs within the container via anonymous
     // request, but cannot enumerate containers within the storage account.
     //
+   
     // BLOBS_ONLY:
     // Specifies public read access for blobs. Blob data within this
     // container can be read via anonymous request, but container data is not
@@ -47,7 +46,7 @@ if (!isset($_GET["Cleanup"])) {
     $createContainerOptions->addMetaData("key1", "value1");
     $createContainerOptions->addMetaData("key2", "value2");
 
-      $containerName = "blockblobs".generateRandomString();
+      $containerName = "filestore"
 
     try {
         // Create container.
