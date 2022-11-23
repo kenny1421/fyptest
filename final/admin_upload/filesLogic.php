@@ -35,7 +35,7 @@ echo  "File: " . $file . '<br>';
         echo ("$myfile is a directory");
     else
         echo ("$myfile is not a directory");
-    exit
+    exit;
     if (!in_array($extension, ['zip', 'pdf', 'docx','json'])) {
         echo "----------------------------You file extension must be .zip, .pdf ,.docx or json!!!----------------------------";
     } elseif ($_FILES['myfile']['size'] > 99999999) { // file shouldn't be larger than 1Megabyte
