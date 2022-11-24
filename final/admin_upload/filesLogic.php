@@ -33,15 +33,18 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
     // destination of the file on the server
     
         
-    $filename = $_FILES['myfile']['name'];
+       $filename = $_FILES['myfile']['name'];
         
-    if(file_exists($filename)){
+    if(($_FILES['myfile']['name']) == ""){
+        echo "<div class='text-danger text-center'>Please choose a file!</div>";
+    } else {
+
         
-        $destination = '../uploads/' . $filename;
+    $destination = '../uploads/' . $filename;
 
     // get the file extension
     $extension = pathinfo($filename, PATHINFO_EXTENSION);
-$file = $_FILES['myfile']['tmp_name'];
+    $file = $_FILES['myfile']['tmp_name'];
     $size = $_FILES['myfile']['size'];
     $myfile = fopen($filename, "w") or die("Unable to open file!");
         
@@ -61,17 +64,7 @@ $file = $_FILES['myfile']['tmp_name'];
         echo "<div class='text-success text-center'>" . $filename . " had been uploaded!</div>";
         
     }
-    }else {
-        echo "<div class='text-danger text-center'>Please choose a file!</div>";
     }
-
-    
-    //echo $extension;
-    // the physical file on a temporary uploads directory on the server
-    
-}
-   
-}
 
 if (isset($_GET['delete_id'])) {
     $blobfile = $_GET['delete_id'];
@@ -95,21 +88,8 @@ if (isset($_GET['file_id'])) {
     $ext = new SplFileInfo($filedoc);
     $fileext = strtolower($ext->getExtension());
 
-
-    /*if (file_exists($filepath)) {
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename=' . basename($filepath));
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
-        header('Content-Length: ' . filesize('../uploads/' . $file['name']));
-        
-        //This part of code prevents files from being corrupted after download
-        ob_clean();
-        flush();*/
         try {
-    // Get blob.
+   
     $blob = $blobClient->getBlob('testingupload2', $blobfile);
 
     if($fileext === "pdf") {
