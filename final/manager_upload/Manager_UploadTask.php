@@ -121,7 +121,7 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
 
         </form>
       </div>
-        <<div class ="row">
+        <div class ="row">
                 <table>
                     <thead>
                         <th>ID</th>
