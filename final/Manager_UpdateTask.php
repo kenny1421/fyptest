@@ -79,10 +79,23 @@ if(isset($_POST['submit'])){
           
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" href="Manager_ManageTask.php">Update Task</a></li>
+          <li><a class="link_name" href="Manager_ManageTask.php">Manage Task</a></li>
           
         </ul>
       </li>
+	    <li>
+				<div class="iocn-link">
+					<a href="../final/manager_upload/Manager_UploadTask.php">
+						<i class='bx bx-upload'></i>
+							<span class="link_name">Upload Task</span>
+						</a>
+					    	<i class='bx bxs-chevron-down arrow' ></i>
+					</div>
+					<ul class="sub-menu">
+						<li><a class="link_name" href="../final/manager_upload/Manager_UploadTask.php">Upload Task</a></li>
+						<li><a href="../final/manager_viewtask/Manager_ViewTask.php">View Task</a></li>
+					</ul>
+				</li>
       
       <li>
     <div class="profile-details">
