@@ -8,7 +8,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
-    <title>Task</title>
+    <title>Todo List</title>
     <link rel="icon" type="image/png" href="Images/NeuonAI_Logo.png"/>
     <!--<title> Drop Down Sidebar Menu | CodingLab </title>-->
     <link rel="stylesheet" href="css/style.css">
@@ -29,10 +29,10 @@
       		<li>
         		<a href="Admin_ToDoList.php">
           			<i class='bx bx-task' ></i>
-          			<span class="link_name">To Do List</span>
+          			<span class="link_name">Todo List</span>
         		</a>
         	<ul class="sub-menu blank">
-          	<li><a class="link_name" href="Admin_ToDoList.php">To Do List</a></li>
+          	<li><a class="link_name" href="Admin_ToDoList.php">Todo List</a></li>
         	</ul>
       	</li>
       	<li>
@@ -106,7 +106,7 @@
   <section class="home-section">
     			<div class="home-content">
       				<i class='bx bx-menu' ></i>
-      				<span class="text">Task</span>
+      				<span class="text">Todo List</span>
     			</div>
 
     			<div class=home-body>
