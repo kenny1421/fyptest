@@ -119,17 +119,6 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
           <input type="file" name="myfile"> <br>
           <button type="submit" name="save">Upload</button>
 
-          <div class= "form-group">
-            <label for="category"  
-	            class="form-label">Category</label>
-		            <input type="text" 
-                class="form-control" 
-                name="category" 
-                id="category"
-              value="<?php if(isset($_GET['category']))
-              echo $_GET['category'];?>">
-          </div>
-
         </form>
       </div>
         <<div class ="row">
