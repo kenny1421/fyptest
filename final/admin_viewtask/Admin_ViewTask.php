@@ -129,7 +129,13 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
         <div class="wrap">
           <div class="card">
           <div class="container">
-         <div class ="row">
+      <div class="row1">
+        <form action="Admin_ViewTask.php" class="form" method="post" enctype="multipart/form-data" >
+        
+
+        </form>
+      </div>
+        <div class ="row">
                 <table>
                     <thead>
                         <th>ID</th>
