@@ -1,6 +1,6 @@
 <?php
 // connect to the database
-$conn = mysqli_connect('mysqltest3.mysql.database.azure.com', 'sqltest', 'Test12345', 'my_db');
+$conn = mysqli_connect('localhost', 'root', '', 'my_db');
 
 $sql = "SELECT * FROM files";
 $result = mysqli_query($conn, $sql);
@@ -22,6 +22,7 @@ $connectionString = "DefaultEndpointsProtocol=https;AccountName='fypblobstorage1
 $containerName="testingupload2";
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
+    
 // Uploads files
       
     if (isset($_POST['save'])) { // if save button on the form is clicked
@@ -29,94 +30,73 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
         // Create container.
    
     // name of the uploaded file
-    $filename = $_FILES['myfile']['name'];
-
     // destination of the file on the server
-    $destination = '../uploads/' . $filename;
+    
+        
+    $filename = $_FILES['myfile']['name'];
+        
+    if(file_exists($filename)){
+        
+        $destination = '../uploads/' . $filename;
 
     // get the file extension
     $extension = pathinfo($filename, PATHINFO_EXTENSION);
-    //echo $extension;
-    // the physical file on a temporary uploads directory on the server
-    $file = $_FILES['myfile']['tmp_name'];
+$file = $_FILES['myfile']['tmp_name'];
     $size = $_FILES['myfile']['size'];
     $myfile = fopen($filename, "w") or die("Unable to open file!");
         
-        fclose($myfile);
-        
-        # Upload file as a block blob
-        echo "Uploading BlockBlob: ".PHP_EOL;
-        echo $filename;
-        echo "<br />";
-        
-        $content = fopen($filename, "r");
+    fclose($myfile);
+    $content = fopen($_FILES['myfile']["tmp_name"], "r")or die("Unable to open file!");
+       
 
-        //Upload blob
-        $blobClient->createBlockBlob($containerName, $filename, $content);
-
-        // List blobs.
-        $listBlobsOptions = new ListBlobsOptions();
-        $listBlobsOptions->setPrefix("HelloWorld");
-
-        echo "These are the blobs present in the container: ";
-
-        do{
-            $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
-            foreach ($result->getBlobs() as $blob)
-            {
-                echo $blob->getName().": ".$blob->getUrl()."<br />";
-            }
-        
-            $listBlobsOptions->setContinuationToken($result->getContinuationToken());
-        } while($result->getContinuationToken());
-        echo "<br />";
-
-        // Get blob.
-        echo "This is the content of the blob uploaded: ";
-        $blob = $blobClient->getBlob($containerName, $filename);
-        fpassthru($blob->getContentStream());
-        echo "<br />";
-
-    
     if (!in_array($extension, ['zip', 'pdf', 'docx','json'])) {
-        echo "You file extension must be .zip, .pdf ,.docx or json";
+        echo "<div class='text-danger text-center'>You file extension must be .zip, .pdf ,.docx or json!!!</div>";
     } elseif ($_FILES['myfile']['size'] > 99999999) { // file shouldn't be larger than 1Megabyte
-        echo "File too large!";
+        echo "<div class='text-danger text-center'>File too large!</div>";
     } else 
-    
-    {
-        // move the uploaded (temporary) file to the specified destination
-        if (move_uploaded_file($file, $destination)) {
-            $sql = "INSERT INTO files (name, size, downloads) VALUES ('$filename', $size, 0)";
-            if (mysqli_query($conn, $sql)) {
-                unset($_FILES['UploadFileField']); header('Location: Admin_UploadTask.php');
-                 echo "File Uploaded! .";
-                exit();
-            }
-        } 
+     //Upload blob
         
-        else 
-        {
-        echo "Failed to upload file.";
-        }
+    {
+        $blobClient->createBlockBlob($containerName, $filename, $content);
+        echo "<div class='text-success text-center'>" . $filename . " had been uploaded!</div>";
+        
     }
+    }else {
+        echo "<div class='text-danger text-center'>Please choose a file!</div>";
+    }
+
+    
+    //echo $extension;
+    // the physical file on a temporary uploads directory on the server
+    
 }
    
+}
+
+if (isset($_GET['delete_id'])) {
+    $blobfile = $_GET['delete_id'];
+    
+    $blobClient->deleteBlob('testingupload2', $blobfile);  
+    
+    echo "<div class='text-danger text-center'>" . $blobfile . " had been deleted!</div>";
 }
 
 
 // Downloads files
 if (isset($_GET['file_id'])) {
-    $id = $_GET['file_id'];
+    
 
     // fetch file to download from database
-    $sql = "SELECT * FROM files WHERE id=$id";
-    $result = mysqli_query($conn, $sql);
+    $blobfile = $_GET['file_id'];
+    echo $blobfile;
+    echo "<div class='text-success text-center'>" . $blobfile . " had been downloaded!</div>";
+    $id = $_GET['file_id'];
+    $filedoc = basename($blobfile);
+    $ext = new SplFileInfo($filedoc);
+    $fileext = strtolower($ext->getExtension());
 
-    $file = mysqli_fetch_assoc($result);
-    $filepath = '../uploads/' . $file['name'];
 
-    if (file_exists($filepath)) {
+    /*if (file_exists($filepath)) {
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment; filename=' . basename($filepath));
@@ -127,8 +107,38 @@ if (isset($_GET['file_id'])) {
         
         //This part of code prevents files from being corrupted after download
         ob_clean();
-        flush();
-        
+        flush();*/
+        try {
+    // Get blob.
+    $blob = $blobClient->getBlob('testingupload2', $blobfile);
+
+    if($fileext === "pdf") {
+        header('Content-type: application/pdf');
+    } else if ($fileext === "doc") {
+        header('Content-type: application/msword'); 
+    } else if ($fileext === "docx") {
+        header('Content-type: application/vnd.openxmlformats-officedocument.wordprocessingml.document'); 
+    } else if($fileext === "txt") {
+        header('Content-type: plain/text');
+    }else if($fileext ==="json"){
+        header('Content-type:application/json');
+    }
+            elseif($fileext === "jpg"){
+        header('Context-type:image/jpg');
+    }
+    header("Content-Disposition: attachment; filename=\"" . $blobfile . "\"");
+    
+    fpassthru($blob->getContentStream());
+    
+}
+catch(ServiceException $e){
+    // Handle exception based on error codes and messages.
+    // Error codes and messages are here: 
+    // http://msdn.microsoft.com/en-us/library/windowsazure/dd179439.aspx
+    $code = $e->getCode();
+    $error_message = $e->getMessage();
+    echo $code.": ".$error_message."<br />";
+}
         readfile('../uploads/' . $file['name']);
 
         // Now update downloads count
@@ -136,6 +146,5 @@ if (isset($_GET['file_id'])) {
         $updateQuery = "UPDATE files SET downloads=$newCount WHERE id=$id";
         mysqli_query($conn, $updateQuery);
         exit;
-    }
-
 }
+
