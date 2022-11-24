@@ -166,7 +166,7 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
                                 </td>
                                 <td>
                                     <a href=" Admin_UploadTask.php?delete_id=<?php echo
-                                    $blob->getName()?>">Delete</a>
+                                    $blob->getName()?>"><button class="btn btn-danger delete_btn">Delete</button></a>
                                 </td>
                             </tr>
                         <?php
