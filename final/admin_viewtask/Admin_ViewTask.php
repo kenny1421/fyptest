@@ -150,7 +150,7 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
                                     $blob->getName()?>">Download</a>
                                 </td>
                                 <td>
-                                    <a href=" User_UploadTask.php?delete_id=<?php echo
+                                    <a href=" ../final/user_upload/User_UploadTask.php?delete_id=<?php echo
                                     $blob->getName()?>">Delete</a>
                                 </td>
                             </tr>
