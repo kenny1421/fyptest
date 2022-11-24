@@ -63,9 +63,11 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
         $blobClient->createBlockBlob($containerName, $filename, $content);
         echo "<div class='text-success text-center'>" . $filename . " had been uploaded!</div>";
         
-    }
+        }
     }
 
+    }
+}
 if (isset($_GET['delete_id'])) {
     $blobfile = $_GET['delete_id'];
     
