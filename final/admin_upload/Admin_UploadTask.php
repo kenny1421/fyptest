@@ -1,170 +1,179 @@
-<?php
-// connect to the database
-$conn = mysqli_connect('localhost', 'root', '', 'my_db');
+<?php 
+   session_start();
+   include "../db_conn.php";
+   include 'filesLogic.php';
+   if (isset($_SESSION['username']) && isset($_SESSION['id'])) {   ?>
 
-$sql = "SELECT * FROM files";
-$result = mysqli_query($conn, $sql);
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Upload Task</title>
+    <link rel="icon" type="image/png" href="../Images/NeuonAI_Logo.png"/>
+    <!--<title> Drop Down Sidebar Menu | CodingLab </title>-->
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Boxiocns CDN Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="sidebar close">
+    <div class="logo-details">
+    <a href="../home.php">
+				<img src="../Images/NeuonAI_Logo.png" height="75px" width="75px">
+			</a>
+      <span class="logo_name">NeounAI</span>
+    </div>
+    <ul class="nav-links">
+    <li>
+					<a href="../Admin_Task.php">
+						<i class='bx bx-task' ></i>
+						<span class="link_name">Task</span>
+					</a>
+					<ul class="sub-menu blank">
+						<li><a class="link_name" href="../Admin_Task.php">Task</a></li>
+					</ul>
+				</li>
+      <li>
+        <a href="../Admin_AnnotateTool.php">
+          <i class='bx bx-images'></i>
+          <span class="link_name">Annotation Tool</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="../Admin_AnnotateTool.php">Annotation Tool</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="../Admin_ManageTask.php">
+            <i class='bx bx-collection' ></i>
+            <span class="link_name">Assign Task</span>
+          </a>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="../Admin_ManageTask.php">Assign Task</a></li>
+        </ul>
+      </li>
 
-$files = mysqli_fetch_all($result, MYSQLI_ASSOC);
+      <li>
+				<div class="iocn-link">
+					<a href="Admin_UploadTask.php">
+						<i class='bx bx-upload'></i>
+							<span class="link_name">Upload Task</span>
+						</a>
+					    	<i class='bx bxs-chevron-down arrow' ></i>
+					</div>
+					<ul class="sub-menu">
+						<li><a class="link_name" href="Admin_UploadTask.php">Upload Task</a></li>
+						<li><a href="../admin_viewtask/Admin_ViewTask.php">View Task</a></li>
+					</ul>
+				</li>
 
-require_once '../vendor/autoload.php';
+      <li>
+        <a href="../Admin_CreateAccount.php">
+          <i class='bx bx-user-plus'></i>
+          <span class="link_name">Create Account</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="../Admin_CreateAccount.php">Create Account</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="../Admin_ManageAccount.php">
+                    <i class='bx bx-user-circle'></i>
+                    <span class="link_name">Manage Account</span>
+                </a>
+                
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="../Admin_ManageAccount.php">Manage Account</a></li>
+                </ul>
+            </li>
+      <li>
+    <div class="profile-details">
+    <div class="profile-content">
+        					<!--<img src="image/profile.jpg" alt="profileImg">-->
+      					</div>
+      					<div class="name-job">
+        					<div class="profile_name"><?=$_SESSION['name']?></div>
+        					<div class="job"><a href="../logout.php">Logout</a></div>
+      					</div>
+      					<a href="../logout.php"><i class='bx bx-log-out' ></i></a>
+    				</div>
+  				</li>
+</ul>
+  </div>
+  <section class="home-section">
+    <div class="home-content">
+      <i class='bx bx-menu' ></i>
+      <span class="text">Upload Task</span>
+    </div>
+    <div class=home-body>
 
+        <div class="wrap">
+          <div class="card">
+          <div class="container">
+      <div class="row1">
+        <form action="Admin_UploadTask.php" class="form" method="post" enctype="multipart/form-data" >
+          
+          <input type="file" name="myfile"> <br>
+          <button type="submit" name="save">Upload</button>
 
-use MicrosoftAzure\Storage\Blob\BlobRestProxy;
-use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
-use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
-use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
-use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
-if (!isset($_GET["Cleanup"])) {
-    
-$connectionString = "DefaultEndpointsProtocol=https;AccountName='fypblobstorage1';AccountKey='AjZJkdXUn30JxqF9/3cevJ1ucreLhgxXflkk/dQSB4ekJ8mEBATRoPRkpGiGDkM2UoLwyE9bHmOe+AStYE5M6A=='";
-
-$containerName="testingupload2";
-// Create blob client.
-$blobClient = BlobRestProxy::createBlobService($connectionString);
-// Uploads files
+        </form>
+      </div>
+        <div class ="row">
+                <table>
+                    <thead>
+                        <th>ID</th>
+                        <th>FileName</th>
+                        <th>Size (in mb)</th>
+                        <th>Downloads</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody>
+                        <?php foreach($files as $file): ?>
+                        
+                        <tr>
+                            <td><?php echo $file['id'];?></td>
+                            <td><?php echo $file['name'];?></td>
+                            <td><?php echo $file['size']/1000 . "KB";?></td>
+                            <td><?php echo $file['downloads'];?></td>
+                            <td>
+                                <a href="Admin_UploadTask.php?file_id=<?php echo
+                                    $file['id']?>">Download</a>
+                            </td>
+                        </tr>
+                        <?php endforeach;?>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+            
+          </div>
       
-    if (isset($_POST['save'])) { // if save button on the form is clicked
+    </div>
+  </section>
 
-        // Create container.
-   
-    // name of the uploaded file
-    $filename = $_FILES['myfile']['name'];
+  <script src="script_upload.js"></script>
 
-    // destination of the file on the server
-    $destination = '../uploads/' . $filename;
-
-    // get the file extension
-    $extension = pathinfo($filename, PATHINFO_EXTENSION);
-    //echo $extension;
-    // the physical file on a temporary uploads directory on the server
-    $file = $_FILES['myfile']['tmp_name'];
-    $size = $_FILES['myfile']['size'];
-    $myfile = fopen($filename, "w") or die("Unable to open file!");
-        
-        fclose($myfile);
-        
-        # Upload file as a block blob
-        echo "Uploading BlockBlob: ".PHP_EOL;
-        echo $filename;
-        echo "<br />";
-        
-        $content = fopen($filename, "r");
-
-        //Upload blob
-        $blobClient->createBlockBlob($containerName, $filename, $content);
-
-        // List blobs.
-        $listBlobsOptions = new ListBlobsOptions();
-        $listBlobsOptions->setPrefix("HelloWorld");
-
-        echo "These are the blobs present in the container: ";
-
-        do{
-            $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
-            foreach ($result->getBlobs() as $blob)
-            {
-                echo $blob->getName().": ".$blob->getUrl()."<br />";
-            }
-        
-            $listBlobsOptions->setContinuationToken($result->getContinuationToken());
-        } while($result->getContinuationToken());
-        echo "<br />";
-
-        // Get blob.
-        echo "This is the content of the blob uploaded: ";
-        $blob = $blobClient->getBlob($containerName, $filename);
-        fpassthru($blob->getContentStream());
-        echo "<br />";
-
-    
-    if (!in_array($extension, ['zip', 'pdf', 'docx','json'])) {
-        echo "You file extension must be .zip, .pdf ,.docx or json";
-    } elseif ($_FILES['myfile']['size'] > 99999999) { // file shouldn't be larger than 1Megabyte
-        echo "File too large!";
-    } else 
-    
-    {
-        // move the uploaded (temporary) file to the specified destination
-        if (move_uploaded_file($file, $destination)) {
-            $sql = "INSERT INTO files (name, size, downloads) VALUES ('$filename', $size, 0)";
-            if (mysqli_query($conn, $sql)) {
-                unset($_FILES['UploadFileField']); header('Location: Admin_UploadTask.php');
-                 echo "File Uploaded! .";
-                exit();
-            }
-        } 
-        
-        else 
-        {
-        echo "Failed to upload file.";
-        }
-    }
-}
-   
-}
-
-
-// Downloads files
-if (isset($_GET['file_id'])) {
-    $id = $_GET['file_id'];
-
-    // fetch file to download from database
-    $sql = "SELECT * FROM files WHERE id=$id";
-    $result = mysqli_query($conn, $sql);
-
-    $file = mysqli_fetch_assoc($result);
-    $filepath = '../uploads/' . $file['name'];
-    $blobfile = $file['name'];
-    $filedoc = basename($blobfile);
-    $ext = new SplFileInfo($filedoc);
-    $fileext = strtolower($ext->getExtension());
-
-
-    /*if (file_exists($filepath)) {
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename=' . basename($filepath));
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
-        header('Content-Length: ' . filesize('../uploads/' . $file['name']));
-        
-        //This part of code prevents files from being corrupted after download
-        ob_clean();
-        flush();*/
-        try {
-    // Get blob.
-    $blob = $blobClient->getBlob('testingupload2', $blobfile);
-
-    if($fileext === "pdf") {
-        header('Content-type: application/pdf');
-    } else if ($fileext === "doc") {
-        header('Content-type: application/msword'); 
-    } else if ($fileext === "docx") {
-        header('Content-type: application/vnd.openxmlformats-officedocument.wordprocessingml.document'); 
-    } else if($fileext === "txt") {
-        header('Content-type: plain/text');
-    }else if($fileext ==="json"){
-        header('Content-type:application/json');
-    }
-    header("Content-Disposition: attachment; filename=\"" . $blobfile . "\"");
-    fpassthru($blob->getContentStream());
-}
-catch(ServiceException $e){
-    // Handle exception based on error codes and messages.
-    // Error codes and messages are here: 
-    // http://msdn.microsoft.com/en-us/library/windowsazure/dd179439.aspx
-    $code = $e->getCode();
-    $error_message = $e->getMessage();
-    echo $code.": ".$error_message."<br />";
-}
-        readfile('../uploads/' . $file['name']);
-
-        // Now update downloads count
-        $newCount = $file['downloads'] + 1;
-        $updateQuery = "UPDATE files SET downloads=$newCount WHERE id=$id";
-        mysqli_query($conn, $updateQuery);
-        exit;
-}
-
+  <script>
+  let arrow = document.querySelectorAll(".arrow");
+  for (var i = 0; i < arrow.length; i++) {
+    arrow[i].addEventListener("click", (e)=>{
+   let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+   arrowParent.classList.toggle("showMenu");
+    });
+  }
+  let sidebar = document.querySelector(".sidebar");
+  let sidebarBtn = document.querySelector(".bx-menu");
+  console.log(sidebarBtn);
+  sidebarBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("close");
+  });
+  </script>
+</body>
+</html>
+<?php }else{
+	header("Location: ../index.php");
+} ?>
