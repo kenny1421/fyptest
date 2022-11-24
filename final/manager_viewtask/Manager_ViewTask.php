@@ -129,11 +129,6 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
                                 <td>
                                     <a href=" User_ViewTask.php?file_id=<?php echo
                                     $blob->getName()?>">Download</a>
-                                </td>
-                                <td>
-                                    <a href=" User_ViewTask.php?delete_id=<?php echo
-                                    $blob->getName()?>">Delete</a>
-                                </td>
                             </tr>
                         <?php
                                $count++;
