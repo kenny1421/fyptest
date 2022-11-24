@@ -28,10 +28,10 @@
 				<li>
 					<a href="Admin_ToDoList.php">
 						<i class='bx bx-task' ></i>
-						<span class="link_name">To Do List</span>
+						<span class="link_name">To-Do List</span>
 					</a>
 					<ul class="sub-menu blank">
-						<li><a class="link_name" href="Admin_ToDoList.php">To Do List</a></li>
+						<li><a class="link_name" href="Admin_ToDoList.php">To-Do List</a></li>
 					</ul>
 				</li>
 
@@ -195,10 +195,10 @@
 	<li>
 		<a href="Manager_ToDoList.php">
 			<i class='bx bx-task' ></i>
-				<span class="link_name">To Do List</span>
+				<span class="link_name">To-Do List</span>
 					</a>
 					<ul class="sub-menu blank">
-						<li><a class="link_name" href="Manager_ToDoList.php">To Do List</a></li>
+						<li><a class="link_name" href="Manager_ToDoList.php">To-Do List</a></li>
 					</ul>
 	</li>
     <li>
@@ -339,10 +339,10 @@
 				<li>
 					<a href="User_ToDoList.php">
 						<i class='bx bx-task' ></i>
-						<span class="link_name">To Do List</span>
+						<span class="link_name">To-Do List</span>
 					</a>
 					<ul class="sub-menu blank">
-						<li><a class="link_name" href="User_ToDolist.php">To Do List</a></li>
+						<li><a class="link_name" href="User_ToDolist.php">To-Do List</a></li>
 					</ul>
 				</li>
       	
