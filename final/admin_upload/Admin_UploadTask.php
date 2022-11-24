@@ -1,7 +1,7 @@
 <?php 
    session_start();
    include "../db_conn.php";
-   //include 'filesLogic.php';
+   include 'filesLogic.php';
    if (isset($_SESSION['username']) && isset($_SESSION['id'])) {   ?>
 
 <!DOCTYPE html>
