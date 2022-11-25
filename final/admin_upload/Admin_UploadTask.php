@@ -48,12 +48,12 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
     </div>
     <ul class="nav-links">
     <li>
-					<a href="../Admin_ToDoList.php">
+					<a href="../Admin_Task.php">
 						<i class='bx bx-task' ></i>
-						<span class="link_name">Todo List</span>
+						<span class="link_name">Task</span>
 					</a>
 					<ul class="sub-menu blank">
-						<li><a class="link_name" href="../Admin_ToDoList.php">Todo List</a></li>
+						<li><a class="link_name" href="../Admin_Task.php">Task</a></li>
 					</ul>
 				</li>
       <li>
@@ -69,11 +69,11 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
         <div class="iocn-link">
           <a href="../Admin_ManageTask.php">
             <i class='bx bx-collection' ></i>
-            <span class="link_name">Manage Task</span>
+            <span class="link_name">Assign Task</span>
           </a>
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" href="../Admin_ManageTask.php">Manage Task</a></li>
+          <li><a class="link_name" href="../Admin_ManageTask.php">Assign Task</a></li>
         </ul>
       </li>
 
@@ -137,22 +137,18 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
       <div class="row1">
         <form action="Admin_UploadTask.php" class="form" method="post" enctype="multipart/form-data" >
           
-	<br>
-          <label for="form" class="form-label">Upload file here</label>
-          <input type="file" class ="form-control" name="myfile"> <br>
-	<br>
-          <button class="btn btn-primary" type="submit" name="save">Upload</button>
+          <input type="file" name="myfile"> <br>
+          <button type="submit" name="save">Upload</button>
 
         </form>
       </div>
-	<br>
         <div class ="row">
-                <table class="table">
+                <table>
                     <thead>
-                        <th scope="col">ID</th>
-                        <th scope="col">FileName</th>
-                        <th scope="col">Action</th>
-                        
+                        <th>ID</th>
+                        <th>FileName</th>
+                        <th>Action</th>
+                        <th></th>
                     </thead>
                     <tbody>
                         <?php
@@ -164,11 +160,11 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
                                 <td><?php echo $blob->getName();?></td>
                                 <td>
                                     <a href=" Admin_UploadTask.php?file_id=<?php echo
-                                    $blob->getName()?>"><button class="btn btn-primary">Download</button></a>
-                                
-                                
+                                    $blob->getName()?>">Download</a>
+                                </td>
+                                <td>
                                     <a href=" Admin_UploadTask.php?delete_id=<?php echo
-                                    $blob->getName()?>"><button class="btn btn-danger delete_btn">Delete</button></a>
+                                    $blob->getName()?>">Delete</a>
                                 </td>
                             </tr>
                         <?php
