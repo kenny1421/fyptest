@@ -116,7 +116,7 @@
         <div class="wrap">
           <div class="card">
             <div class = "container">
-              <button class="btn btn-primary my-5"><a href="Admin_AddTask.php"class="text-light">
+              <a class="btn btn-primary my-5" href="Admin_AddTask.php"class="text-light">
                   Add Task</a>
       
               </button>
@@ -152,7 +152,7 @@
                   <td>'.$taskcomment.'</td>
                   <td> 
                   
-                    <button class="btn btn-primary"><a href="Admin_UpdateTask.php?
+                    <a class="btn btn-primary" href="Admin_UpdateTask.php?
                     updateid='.$id.'" class="text-light" >Update</a></button>
 
                     <button type="button" class="btn btn-danger delete_btn" id='.$id.'>Delete</a></button>
