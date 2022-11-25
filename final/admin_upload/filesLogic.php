@@ -1,6 +1,6 @@
 <?php
 // connect to the database
-$conn = mysqli_connect('mysqltest3.mysql.database.azure.com', 'sqltest', 'Test12345', 'my_db');
+$conn = mysqli_connect('localhost', 'root', '', 'my_db');
 
 $sql = "SELECT * FROM files";
 $result = mysqli_query($conn, $sql);
@@ -57,8 +57,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
     } elseif ($_FILES['myfile']['size'] > 99999999) { // file shouldn't be larger than 1Megabyte
         echo "<div class='text-danger text-center'>File too large!</div>";
     } else 
-     //Upload blob
-        
+     //Upload blob 
     {
         $blobClient->createBlockBlob($containerName, $filename, $content);
         echo "<div class='text-success text-center'>" . $filename . " had been uploaded!</div>";
@@ -110,7 +109,7 @@ if (isset($_GET['file_id'])) {
     }
     header("Content-Disposition: attachment; filename=\"" . $blobfile . "\"");
     
-    fpassthru($blob->getContentStream());
+    //fpassthru($blob->getContentStream());
     
 }
 catch(ServiceException $e){
