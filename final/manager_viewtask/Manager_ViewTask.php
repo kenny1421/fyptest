@@ -111,12 +111,12 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
           <div class="card">
           <div class="container">
          <div class ="row">
-                <table>
+                <table class="table">
                     <thead>
-                        <th>ID</th>
-                        <th>FileName</th>
-                        <th>Action</th>
-                        <th></th>
+                        <th scope="col">ID</th>
+                        <th scope="col">FileName</th>
+                        <th scope="col">Action</th>
+                        
                     </thead>
                     <tbody>
                         <?php
@@ -128,7 +128,7 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
                                 <td><?php echo $blob->getName();?></td>
                                 <td>
                                     <a href=" User_ViewTask.php?file_id=<?php echo
-                                    $blob->getName()?>">Download</a>
+                                    $blob->getName()?>"<button class="btn btn-primary">Download</button></a>
                             </tr>
                         <?php
                                $count++;
