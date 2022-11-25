@@ -110,12 +110,12 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
         </form>
       </div>
         <div class ="row">
-                <table>
+                <table class="table">
                     <thead>
-                        <th>ID</th>
-                        <th>FileName</th>
-                        <th>Action</th>
-                        <th></th>
+                        <th scope="col">ID</th>
+                        <th scope="col">FileName</th>
+                        <th scope="col">Action</th>
+                        
                     </thead>
                     <tbody>
                         <?php
