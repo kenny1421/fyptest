@@ -1,6 +1,6 @@
 <?php
 // connect to the database
-$conn = mysqli_connect('localhost', 'root', '', 'my_db');
+$conn = mysqli_connect('mysqltest3.mysql.database.azure.com', 'sqltest', 'Test12345', 'my_db');
 
 $sql = "SELECT * FROM files";
 $result = mysqli_query($conn, $sql);
@@ -106,10 +106,10 @@ if (isset($_GET['file_id'])) {
     }
             elseif($fileext === "jpg"){
         header('Context-type:image/jpg');
-    }
+    }else
     header("Content-Disposition: attachment; filename=\"" . $blobfile . "\"");
     
-    //fpassthru($blob->getContentStream());
+    fpassthru($blob->getContentStream());
     
 }
 catch(ServiceException $e){
