@@ -16,7 +16,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
 $listBlobsOptions = new ListBlobsOptions();
     //$listBlobsOptions->setPrefix("Pass Task 1.1.pdf");
 $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
-   if (isset($_SESSION['username']) && isset($_SESSION['id'])) {   ?>
+   if (isset($_SESSION['name']) && isset($_SESSION['id'])) {   ?>
 
 <!DOCTYPE html>
 <!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
@@ -127,7 +127,7 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
                                 <td><?php echo $count; ?></td>
                                 <td><?php echo $blob->getName();?></td>
                                 <td>
-                                    <a href=" User_ViewTask.php?file_id=<?php echo
+                                    <a href=" Manager_ViewTask.php?file_id=<?php echo
                                     $blob->getName()?>"<button class="btn btn-primary">Download</button></a>
                             </tr>
                         <?php
