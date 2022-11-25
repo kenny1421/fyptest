@@ -79,7 +79,8 @@ if (isset($_GET['delete_id'])) {
 // Downloads files
 if (isset($_GET['file_id'])) {
     
-
+    try{
+    
     // fetch file to download from database
     $blobfile = $_GET['file_id'];
     echo $blobfile;
@@ -89,7 +90,7 @@ if (isset($_GET['file_id'])) {
     $ext = new SplFileInfo($filedoc);
     $fileext = strtolower($ext->getExtension());
 
-        try {
+        
    
     $blob = $blobClient->getBlob('testingupload2', $blobfile);
 
