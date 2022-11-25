@@ -137,7 +137,9 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
       <div class="row1">
         <form action="Admin_UploadTask.php" class="form" method="post" enctype="multipart/form-data" >
           
-          <input type="file" name="myfile"> <br>
+	<br>
+          <label for="form" class="form-label">Upload your files here</label>
+          <input type="file" class ="form-control" name="myfile"> <br>
 	<br>
           <button class="btn btn-primary" type="submit" name="save">Upload</button>
 
