@@ -165,8 +165,8 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
                                 <td>
                                     <a href=" Admin_UploadTask.php?file_id=<?php echo
                                     $blob->getName()?>"><button class="btn btn-primary">Download</button></a>
-                                </td>
-                                <td>
+                                
+                                
                                     <a href=" Admin_UploadTask.php?delete_id=<?php echo
                                     $blob->getName()?>"><button class="btn btn-danger delete_btn">Delete</button></a>
                                 </td>
