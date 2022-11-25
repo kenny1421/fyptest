@@ -137,18 +137,21 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
       <div class="row1">
         <form action="Admin_UploadTask.php" class="form" method="post" enctype="multipart/form-data" >
           
-          <input type="file" name="myfile"> <br>
-          <button type="submit" name="save">Upload</button>
+          <br>
+          <label for="form" class="form-label">Upload file here</label>
+          <input type="file" class ="form-control" name="myfile"> <br>
+	<br>
+          <button class="btn btn-primary" type="submit" name="save">Upload</button>
 
         </form>
       </div>
         <div class ="row">
-                <table>
+                <table class="table">
                     <thead>
-                        <th>ID</th>
-                        <th>FileName</th>
-                        <th>Action</th>
-                        <th></th>
+                        <th scope="col">ID</th>
+                        <th scope="col">FileName</th>
+                        <th scope="col">Action</th>
+                        
                     </thead>
                     <tbody>
                         <?php
@@ -160,11 +163,10 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
                                 <td><?php echo $blob->getName();?></td>
                                 <td>
                                     <a href=" Admin_UploadTask.php?file_id=<?php echo
-                                    $blob->getName()?>">Download</a>
-                                </td>
-                                <td>
+                                    $blob->getName()?>"><button class="btn btn-primary">Download</button></a>
+                                
                                     <a href=" Admin_UploadTask.php?delete_id=<?php echo
-                                    $blob->getName()?>">Delete</a>
+                                    $blob->getName()?>"><button class="btn btn-danger delete_btn">Delete</button></a>
                                 </td>
                             </tr>
                         <?php
