@@ -73,3 +73,19 @@ if (isset($_GET['file_id'])) {
     }
 
 }
+catch(ServiceException $e){
+    // Handle exception based on error codes and messages.
+    // Error codes and messages are here: 
+    // http://msdn.microsoft.com/en-us/library/windowsazure/dd179439.aspx
+    $code = $e->getCode();
+    $error_message = $e->getMessage();
+    echo $code.": ".$error_message."<br />";
+}
+        readfile('../uploads/' . $file['name']);
+
+        // Now update downloads count
+        $newCount = $file['downloads'] + 1;
+        $updateQuery = "UPDATE files SET downloads=$newCount WHERE id=$id";
+        mysqli_query($conn, $updateQuery);
+        exit;
+}
