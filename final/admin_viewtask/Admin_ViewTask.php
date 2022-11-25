@@ -153,7 +153,7 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
                                 <td><?php echo $blob->getName();?></td>
                                 <td>
                                     <a href="Admin_ViewTask.php?file_id=<?php echo
-                                    $blob->getName()?>"><button class="btn btn-primary"Download</button></a>
+                                    $blob->getName()?>"><button class="btn btn-primary">Download</button></a>
                                 </td>
                             </tr>
                         <?php
