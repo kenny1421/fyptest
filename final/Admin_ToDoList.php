@@ -46,14 +46,14 @@
       </li>
       <li>
         <div class="iocn-link">
-          <a href="#">
+          <a href="Admin_ManageTask.php">
             <i class='bx bx-collection' ></i>
             <span class="link_name">Manage Task</span>
           </a>
           
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" href="#">Manage Task</a></li>
+          <li><a class="link_name" href="Admin_ManageTask.php">Manage Task</a></li>
         </ul>
       </li>
 
