@@ -124,21 +124,25 @@ if(isset($_POST['submit'])){
           <div class="container my-5">
 
 <form method="post">
-    <div class="form-group">
-        <label>Task Description</label>
-        <input type="text" class="form-control" placeholder="Enter task description" name="taskdescription" autocomplete="off">
+    <div class="mb-3">
+        <label for="description" class="form-label">Task Description</label>
+        <input type="text" class="form-control" placeholder="Enter task description" name="taskdescription" autocomplete="off"
+	       value=<?php echo $taskdescription;?>>
     </div>
-    <div class="form-group">
-        <label>Annotators Name</label>
-        <input type="text" class="form-control" placeholder="Enter annotators name" name="name" autocomplete="off">
+    <div class="mb-3">
+        <label for="name" class="form-label">Annotators Name</label>
+        <input type="text" class="form-control" placeholder="Enter annotators name" name="name" autocomplete="off"
+	       value=<?php echo $name;?>>
     </div>
-    <div class="form-group">
-        <label>Email</label>
-        <input type="email" class="form-control" placeholder="Enter annotators email" name="email" autocomplete="off">
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" placeholder="Enter annotators email" name="email" autocomplete="off"
+	       value=<?php echo $email;?>>
     </div>
-    <div class="form-group">
-        <label>Task Comment</label>
-        <input type="text" class="form-control" placeholder="Enter task comment" name="taskcomment" autocomplete="off">
+    <div class="mb-3">
+        <label for="comment" class="form-label">Task Comment</label>
+        <input type="text" class="form-control" placeholder="Enter task comment" name="taskcomment" autocomplete="off"
+	       value=<?php echo $taskcomment;?>>
     </div>
 
 
