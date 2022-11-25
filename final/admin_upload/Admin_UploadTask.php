@@ -151,6 +151,7 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
                     <thead>
                         <th scope="col">ID</th>
                         <th scope="col">FileName</th>
+			<th scope="col"></th>
                         <th scope="col">Action</th>
                         
                     </thead>
