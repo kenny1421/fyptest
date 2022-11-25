@@ -3,6 +3,14 @@ session_start();
 if (isset($_SESSION['username']) && isset($_SESSION['id'])) { 
 include 'db_conn.php';
 $id=$_GET['updateid'];
+$sql="Select * from `crud` where id=$id";
+$result=mysqli_query($conn,$sql);
+$row=mysqli_fetch_assoc($result);
+$taskdescription=$row['taskdescription'];
+$name=$row['name'];
+$email=$row['email'];
+$taskcomment=$row['taskcomment'];
+
 
 if(isset($_POST['submit'])){
     $taskdescription=$_POST['taskdescription'];
@@ -19,7 +27,7 @@ if(isset($_POST['submit'])){
 
     if($result){
         //echo "Data inserted successful";
-        header('location:Manager_ManageTask.php');
+        header('location: Manager_ManageTask.php');
     }else{
         die(mysqli_error($conn));
     }
