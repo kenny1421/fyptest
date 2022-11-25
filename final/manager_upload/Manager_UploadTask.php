@@ -114,7 +114,7 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
           <div class="card">
           <div class="container">
       <div class="row1">
-        <form action="Manager_UploadTask.php" class="form" method="post" enctype="multipart/form-data" >
+        <form action="Admin_UploadTask.php" class="form" method="post" enctype="multipart/form-data" >
           
           <br>
           <label for="form" class="form-label">Upload file here</label>
