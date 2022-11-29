@@ -1,120 +1,175 @@
-<?php
-// connect to the database
-$conn = mysqli_connect('mysqltest3.mysql.database.azure.com', 'sqltest', 'Test12345', 'my_db');
-
-
-$sql = "SELECT * FROM annotators_file";
-$result = mysqli_query($conn, $sql);
-
-$files = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
+<?php 
+   session_start();
+   include "../db_conn.php";
+   include 'filesLogic.php';
 require_once '../vendor/autoload.php';
-
-
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
-use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
-use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
-use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
-use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
-if (!isset($_GET["Cleanup"])) {
-    
+    use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
+    use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
+    use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
+    use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 $connectionString = "DefaultEndpointsProtocol=https;AccountName='fypblobstorage1';AccountKey='AjZJkdXUn30JxqF9/3cevJ1ucreLhgxXflkk/dQSB4ekJ8mEBATRoPRkpGiGDkM2UoLwyE9bHmOe+AStYE5M6A=='";
 
 $containerName="testingupload2";
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
+$listBlobsOptions = new ListBlobsOptions();
+    //$listBlobsOptions->setPrefix("Pass Task 1.1.pdf");
+$blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
+   if (isset($_SESSION['username']) && isset($_SESSION['id'])) {   ?>
+
     
-// Uploads files
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Upload Task</title>
+    <link rel="icon" type="image/png" href="../Images/NeuonAI_Logo.png"/>
+    <!--<title> Drop Down Sidebar Menu | CodingLab </title>-->
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Boxiocns CDN Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+ 
+    <div class="sidebar close">
+    <div class="logo-details">
+    <a href="../home.php">
+				<img src="../Images/NeuonAI_Logo.png" height="75px" width="75px">
+			</a>
+      <span class="logo_name">NeounAI</span>
+    </div>
+    <ul class="nav-links">
+    <li>
+        		<a href="../User_ToDoList.php">
+          			<i class='bx bx-task' ></i>
+          			<span class="link_name">Todo List</span>
+        		</a>
+        	<ul class="sub-menu blank">
+          	<li><a class="link_name" href="../User_ToDoList.php">Todo List</a></li>
+        	</ul>
+      	</li>
+      <li>
+        <a href="../User_AnnotateTool.php">
+          <i class='bx bx-images'></i>
+          <span class="link_name">Annotate Tool</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="../User_AnnotateTool.php">Annotate Tool</a></li>
+        </ul>
+      </li>
+      <li>
+					<div class="iocn-link">
+						<a href="../user_upload/User_UploadTask.php">
+							<i class='bx bx-upload'></i>
+							<span class="link_name">Upload Task</span>
+						</a>
+							<i class='bx bxs-chevron-down arrow' ></i>
+					</div>
+					<ul class="sub-menu">
+						<li><a class="link_name" href="../user_upload/User_UploadTask.php">Upload Task</a></li>
+						<li><a href="../user_viewtask/User_ViewTask.php">View Task</a></li>
+					</ul>
+				</li>
       
-if (isset($_POST['save'])) { // if save button on the form is clicked
+      <li>
+    <div class="profile-details">
+    <div class="profile-content">
+        					<!--<img src="image/profile.jpg" alt="profileImg">-->
+      					</div>
+      					<div class="name-job">
+        					<div class="profile_name"><?=$_SESSION['name']?></div>
+        					<div class="job"><a href="../logout.php">Logout</a></div>
+      					</div>
+      					<a href="../logout.php"><i class='bx bx-log-out' ></i></a>
+    				</div>
+  				</li>
+</ul>
+  </div>
+  <section class="home-section">
+    <div class="home-content">
+      <i class='bx bx-menu' ></i>
+      <span class="text">Upload Task</span>
+    </div>
+    <div class=home-body>
 
-        // Create container.
-   
-    // name of the uploaded file
-    // destination of the file on the server
-    
-        
-       $filename = $_FILES['myfile']['name'];
-        
-    if(($_FILES['myfile']['name']) == ""){
-        echo "<div class='text-danger text-center'>Please choose a file!</div>";
-    } else {
+        <div class="wrap">
+          <div class="card">
+          <div class="container">
+      <div class="row1">
+        <form action="User_UploadTask.php" class="form" method="post" enctype="multipart/form-data" >
+          
+	  <br>
+          <label for="form" class="form-label">Upload file here</label>
+          <input type="file" class="form-control" name="myfile"> <br>
+	  <br>
+          <button class="btn btn-primary" type="submit" name="save">Upload</button>
 
-        
-    $destination = '../uploads/' . $filename;
-
-    // get the file extension
-    $extension = pathinfo($filename, PATHINFO_EXTENSION);
-    $file = $_FILES['myfile']['tmp_name'];
-    $size = $_FILES['myfile']['size'];
-    $myfile = fopen($filename, "w") or die("Unable to open file!");
-        
-    fclose($myfile);
-    $content = fopen($_FILES['myfile']["tmp_name"], "r")or die("Unable to open file!");
+        </form>
+      </div>
+        <div class ="row">
+                <table class="table">
+                    <thead>
+                        <th scope="col">ID</th>
+                        <th scope="col">FileName</th>
+                        <th scope="col">Action</th>
+                        
+                    </thead>
+                    <tbody>
+                        <?php
+                            $count = 1;
+                           foreach ($blobList->getBlobs() as $blob)
+                            { ?>
+                            <tr>
+                                <td><?php echo $count; ?></td>
+                                <td><?php echo $blob->getName();?></td>
+                                <td>
+                                    <a href=" User_UploadTask.php?file_id=<?php echo
+                                    $blob->getName()?>"><button class="btn btn-primary">Download</button></a>
+                                
+                                    <a href=" User_UploadTask.php?delete_id=<?php echo
+                                    $blob->getName()?>"><button class="btn btn-danger delete_btn">Delete</button></a>
+                                </td>
+                            </tr>
+                        <?php
+                               $count++;
+                                //echo $blob->getName().": ".$blob->getUrl()."<br />";
+                            }
        
+       
+                        ?>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+            
+          </div>
+      
+    </div>
+  </section>
 
-    if (!in_array($extension, ['zip', 'pdf', 'docx','json'])) {
-        echo "<div class='text-danger text-center'>You file extension must be .zip, .pdf ,.docx or json!!!</div>";
-    } elseif ($_FILES['myfile']['size'] > 99999999) { // file shouldn't be larger than 1Megabyte
-        echo "<div class='text-danger text-center'>File too large!</div>";
-    } else 
-     //Upload blob
-        
-    {
-        $blobClient->createBlockBlob($containerName, $filename, $content);
-        echo "<div class='text-success text-center'>" . $filename . " had been uploaded!</div>";
-        
-        }
-    }
+  <script src="script_upload.js"></script>
 
-    }
-}
-if (isset($_GET['delete_id'])) {
-    $blobfile = $_GET['delete_id'];
-    
-    $blobClient->deleteBlob('testingupload2', $blobfile);  
-    
-    echo "<div class='text-danger text-center'>" . $blobfile . " had been deleted!</div>";
-}
-
-
-// Downloads files
-if (isset($_GET['file_id'])) {
-    // fetch file to download from database
-    $blobfile = $_GET['file_id'];
-    $filedoc = basename($blobfile);
-    $ext = new SplFileInfo($filedoc);
-    $fileext = strtolower($ext->getExtension());
-
-    try {
-    $blob = $blobClient->getBlob('testingupload2',  $blobfile);
-        
-    if($fileext === "pdf") {
-        header('Content-type: application/pdf');
-    } else if ($fileext == "zip") {
-        header('Content-type: application/zip'); 
-    } else if ($fileext == "docx") {
-        header('Content-type: application/vnd.openxmlformats-officedocument.wordprocessingml.document'); 
-    } else if($fileext == "txt") {
-        header('Content-type: plain/text');
-    }else if($fileext =="json"){
-        header('Content-type:application/json');
-    } elseif($fileext == "jpg"){
-        header('Content-type:image/jpg');
-    }
-    header("Content-Disposition: attachment; filename=\"$blobfile\"");   
-    fpassthru($blob->getContentStream());
-    echo "<div class='text-success text-center'>" . $blobfile . " had been downloaded!</div>";
-   
-        
-}
-catch(ServiceException $e){
-    // Handle exception based on error codes and messages.
-    // Error codes and messages are here: 
-    // http://msdn.microsoft.com/en-us/library/windowsazure/dd179439.aspx
-    $code = $e->getCode();
-    $error_message = $e->getMessage();
-    echo $code.": ".$error_message."<br />";
-}
-
-}
+  <script>
+  let arrow = document.querySelectorAll(".arrow");
+  for (var i = 0; i < arrow.length; i++) {
+    arrow[i].addEventListener("click", (e)=>{
+   let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+   arrowParent.classList.toggle("showMenu");
+    });
+  }
+  let sidebar = document.querySelector(".sidebar");
+  let sidebarBtn = document.querySelector(".bx-menu");
+  console.log(sidebarBtn);
+  sidebarBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("close");
+  });
+  </script>
+</body>
+</html>
+<?php }else{
+	header("Location: ../index.php");
+} ?>
