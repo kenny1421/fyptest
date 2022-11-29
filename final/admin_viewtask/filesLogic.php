@@ -20,7 +20,7 @@ if (!isset($_GET["Cleanup"])) {
     
 $connectionString = "DefaultEndpointsProtocol=https;AccountName='fypblobstorage1';AccountKey='AjZJkdXUn30JxqF9/3cevJ1ucreLhgxXflkk/dQSB4ekJ8mEBATRoPRkpGiGDkM2UoLwyE9bHmOe+AStYE5M6A=='";
 
-$containerName="testingupload2";
+$containerName="fileupload2";
 // Create blob client.
 $blobClient = BlobRestProxy::createBlobService($connectionString);
     
@@ -72,7 +72,7 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
 if (isset($_GET['delete_id'])) {
     $blobfile = $_GET['delete_id'];
     
-    $blobClient->deleteBlob('testingupload2', $blobfile);  
+    $blobClient->deleteBlob('fileupload2', $blobfile);  
     
     echo "<div class='text-danger text-center'>" . $blobfile . " had been deleted!</div>";
 }
@@ -87,7 +87,7 @@ if (isset($_GET['file_id'])) {
     $fileext = strtolower($ext->getExtension());
 
     try {
-    $blob = $blobClient->getBlob('testingupload2',  $blobfile);
+    $blob = $blobClient->getBlob('fileupload2',  $blobfile);
         
     if($fileext === "pdf") {
         header('Content-type: application/pdf');
