@@ -82,29 +82,29 @@ if (isset($_GET['delete_id'])) {
 if (isset($_GET['file_id'])) {
     // fetch file to download from database
     $blobfile = $_GET['file_id'];
-    echo "<div class='text-success text-center'>" . $blobfile . " had been downloaded!</div>";
-    $id = $_GET['file_id'];
     $filedoc = basename($blobfile);
     $ext = new SplFileInfo($filedoc);
     $fileext = strtolower($ext->getExtension());
 
     try {
-    $blob = $blobClient->getBlob('testingupload2',  $_GET['file_id']);
-        fpassthru($blob->getContentStream());
-        exit;
+    $blob = $blobClient->getBlob('testingupload2',  $blobfile);
+        
     if($fileext === "pdf") {
         header('Content-type: application/pdf');
-    } else if ($fileext === "zip") {
+    } else if ($fileext == "zip") {
         header('Content-type: application/zip'); 
-    } else if ($fileext === "docx") {
+    } else if ($fileext == "docx") {
         header('Content-type: application/vnd.openxmlformats-officedocument.wordprocessingml.document'); 
-    } else if($fileext === "txt") {
+    } else if($fileext == "txt") {
         header('Content-type: plain/text');
-    }else if($fileext ==="json"){
+    }else if($fileext =="json"){
         header('Content-type:application/json');
-    } elseif($fileext === "jpg"){
+    } elseif($fileext == "jpg"){
         header('Content-type:image/jpg');
     }
+    header("Content-Disposition: attachment; filename=\"$blobfile\"");   
+    fpassthru($blob->getContentStream());
+    echo "<div class='text-success text-center'>" . $blobfile . " had been downloaded!</div>";
    
         
 }
