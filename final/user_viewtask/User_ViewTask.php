@@ -92,7 +92,7 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
   <section class="home-section">
     <div class="home-content">
       <i class='bx bx-menu' ></i>
-      <span class="text">Upload Task</span>
+      <span class="text">View Task</span>
     </div>
     <div class=home-body>
 
@@ -100,13 +100,8 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
           <div class="card">
           <div class="container">
       <div class="row1">
-        <form action="User_UploadTask.php" class="form" method="post" enctype="multipart/form-data" >
-          
-	  <br>
-          <label for="form" class="form-label">Upload file here</label>
-          <input type="file" class="form-control" name="myfile"> <br>
-	  <br>
-          <button class="btn btn-primary" type="submit" name="save">Upload</button>
+        <form action="User_ViewTask.php" class="form" method="post" enctype="multipart/form-data" >
+        
 
         </form>
       </div>
@@ -127,11 +122,8 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
                                 <td><?php echo $count; ?></td>
                                 <td><?php echo $blob->getName();?></td>
                                 <td>
-                                    <a href=" User_UploadTask.php?file_id=<?php echo
+                                    <a href="User_ViewTask.php?file_id=<?php echo
                                     $blob->getName()?>"><button class="btn btn-primary">Download</button></a>
-                                
-                                    <a href=" User_UploadTask.php?delete_id=<?php echo
-                                    $blob->getName()?>"><button class="btn btn-danger delete_btn">Delete</button></a>
                                 </td>
                             </tr>
                         <?php
