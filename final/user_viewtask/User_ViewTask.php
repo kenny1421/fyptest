@@ -72,7 +72,7 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
 if (isset($_GET['delete_id'])) {
     $blobfile = $_GET['delete_id'];
     
-    $blobClient->deleteBlob('fileupload2', $blobfile);  
+    $blobClient->deleteBlob('testingupload2', $blobfile);  
     
     echo "<div class='text-danger text-center'>" . $blobfile . " had been deleted!</div>";
 }
@@ -87,7 +87,7 @@ if (isset($_GET['file_id'])) {
     $fileext = strtolower($ext->getExtension());
 
     try {
-    $blob = $blobClient->getBlob('fileupload2',  $blobfile);
+    $blob = $blobClient->getBlob('testingupload2',  $blobfile);
         
     if($fileext === "pdf") {
         header('Content-type: application/pdf');
