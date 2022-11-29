@@ -104,7 +104,6 @@ if (isset($_GET['file_id'])) {
     } elseif($fileext === "jpg"){
         header('Context-type:image/jpg');
     }
-        header("Content-Disposition: attachment; filename=\"" . $blobfile . "\"");
         fpassthru($blob->getContentStream());
         
 }
