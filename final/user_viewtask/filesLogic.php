@@ -1,5 +1,5 @@
 <?php
-// connect to the database
+// connect to the database.
 $conn = mysqli_connect('mysqltest3.mysql.database.azure.com', 'sqltest', 'Test12345', 'my_db');
 
 
