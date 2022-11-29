@@ -105,7 +105,7 @@ if (isset($_GET['file_id'])) {
     } elseif($fileext === "jpg"){
         header('Context-type:image/jpg');
     }
-        fpassthru($blob->getContentStream());
+     //fpassthru($blob->getContentStream());
         
 }
 catch(ServiceException $e){
