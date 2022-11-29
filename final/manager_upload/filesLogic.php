@@ -2,6 +2,7 @@
 // connect to the database
 $conn = mysqli_connect('mysqltest3.mysql.database.azure.com', 'sqltest', 'Test12345', 'my_db');
 
+
 $sql = "SELECT * FROM files";
 $result = mysqli_query($conn, $sql);
 
@@ -25,7 +26,7 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
     
 // Uploads files
       
-    if (isset($_POST['save'])) { // if save button on the form is clicked
+if (isset($_POST['save'])) { // if save button on the form is clicked
 
         // Create container.
    
@@ -57,7 +58,8 @@ $blobClient = BlobRestProxy::createBlobService($connectionString);
     } elseif ($_FILES['myfile']['size'] > 99999999) { // file shouldn't be larger than 1Megabyte
         echo "<div class='text-danger text-center'>File too large!</div>";
     } else 
-     //Upload blob 
+     //Upload blob
+        
     {
         $blobClient->createBlockBlob($containerName, $filename, $content);
         echo "<div class='text-success text-center'>" . $filename . " had been uploaded!</div>";
@@ -78,40 +80,33 @@ if (isset($_GET['delete_id'])) {
 
 // Downloads files
 if (isset($_GET['file_id'])) {
-    
-    try{
-    
     // fetch file to download from database
     $blobfile = $_GET['file_id'];
-    echo $blobfile;
-    echo "<div class='text-success text-center'>" . $blobfile . " had been downloaded!</div>";
-    $id = $_GET['file_id'];
     $filedoc = basename($blobfile);
     $ext = new SplFileInfo($filedoc);
     $fileext = strtolower($ext->getExtension());
 
+    try {
+    $blob = $blobClient->getBlob('testingupload2',  $blobfile);
         
-   
-    $blob = $blobClient->getBlob('testingupload2', $blobfile);
-
     if($fileext === "pdf") {
         header('Content-type: application/pdf');
-    } else if ($fileext === "doc") {
-        header('Content-type: application/msword'); 
-    } else if ($fileext === "docx") {
+    } else if ($fileext == "zip") {
+        header('Content-type: application/zip'); 
+    } else if ($fileext == "docx") {
         header('Content-type: application/vnd.openxmlformats-officedocument.wordprocessingml.document'); 
-    } else if($fileext === "txt") {
+    } else if($fileext == "txt") {
         header('Content-type: plain/text');
-    }else if($fileext ==="json"){
+    }else if($fileext =="json"){
         header('Content-type:application/json');
+    } elseif($fileext == "jpg"){
+        header('Content-type:image/jpg');
     }
-            elseif($fileext === "jpg"){
-        header('Context-type:image/jpg');
-    }else
-    header("Content-Disposition: attachment; filename=\"" . $blobfile . "\"");
-    
+    header("Content-Disposition: attachment; filename=\"$blobfile\"");   
     fpassthru($blob->getContentStream());
-    
+    echo "<div class='text-success text-center'>" . $blobfile . " had been downloaded!</div>";
+   
+        
 }
 catch(ServiceException $e){
     // Handle exception based on error codes and messages.
@@ -121,12 +116,5 @@ catch(ServiceException $e){
     $error_message = $e->getMessage();
     echo $code.": ".$error_message."<br />";
 }
-        readfile('../uploads/' . $file['name']);
 
-        // Now update downloads count
-        $newCount = $file['downloads'] + 1;
-        $updateQuery = "UPDATE files SET downloads=$newCount WHERE id=$id";
-        mysqli_query($conn, $updateQuery);
-        exit;
 }
-
