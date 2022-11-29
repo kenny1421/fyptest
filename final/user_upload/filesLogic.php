@@ -3,7 +3,7 @@
 $conn = mysqli_connect('mysqltest3.mysql.database.azure.com', 'sqltest', 'Test12345', 'my_db');
 
 
-$sql = "SELECT * FROM files";
+$sql = "SELECT * FROM annotators_file";
 $result = mysqli_query($conn, $sql);
 
 $files = mysqli_fetch_all($result, MYSQLI_ASSOC);
