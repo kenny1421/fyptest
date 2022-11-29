@@ -89,7 +89,7 @@ if (isset($_GET['file_id'])) {
     $fileext = strtolower($ext->getExtension());
 
     try {
-       $blob = $blobClient->getBlob('testingupload2', $blobfile);
+    $blob = $blobClient->getBlob('testingupload2',  $_GET['file_id']);
     
 
     if($fileext === "pdf") {
