@@ -90,8 +90,6 @@ if (isset($_GET['file_id'])) {
 
     try {
     $blob = $blobClient->getBlob('testingupload2',  $_GET['file_id']);
-    header("Content-type: application/json");
-    header("Content-Disposition: attachment; filename=\"$blobfile\"");
         fpassthru($blob->getContentStream());
         exit;
     if($fileext === "pdf") {
