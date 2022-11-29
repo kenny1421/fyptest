@@ -94,8 +94,8 @@ if (isset($_GET['file_id'])) {
 
     if($fileext === "pdf") {
         header('Content-type: application/pdf');
-    } else if ($fileext === "doc") {
-        header('Content-type: application/msword'); 
+    } else if ($fileext === "zip") {
+        header('Content-type: application/zip'); 
     } else if ($fileext === "docx") {
         header('Content-type: application/vnd.openxmlformats-officedocument.wordprocessingml.document'); 
     } else if($fileext === "txt") {
@@ -105,7 +105,7 @@ if (isset($_GET['file_id'])) {
     } elseif($fileext === "jpg"){
         header('Context-type:image/jpg');
     }
-     //fpassthru($blob->getContentStream());
+    fpassthru($blob->getContentStream());
         
 }
 catch(ServiceException $e){
