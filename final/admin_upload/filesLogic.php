@@ -90,6 +90,12 @@ if (isset($_GET['file_id'])) {
 
     try {
     $blob = $blobClient->getBlob('testingupload2',  $_GET['file_id']);
+        
+    $content = stream_get_contents($blob->getContentStream()); 
+    $finfo = new finfo(FILEINFO_MIME)
+    $mime = $finfo->buffer($content);
+        
+    header("Content-type: $mime");
     
 
     if($fileext === "pdf") {
@@ -103,9 +109,9 @@ if (isset($_GET['file_id'])) {
     }else if($fileext ==="json"){
         header('Content-type:application/json');
     } elseif($fileext === "jpg"){
-        header('Context-type:image/jpg');
+        header('Content-type:image/jpg');
     }
-    fpassthru($blob->getContentStream());
+    //fpassthru($blob->getContentStream());
         
 }
 catch(ServiceException $e){
