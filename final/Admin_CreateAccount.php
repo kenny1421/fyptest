@@ -140,6 +140,7 @@
                                 class="form-control" 
                                 name="NAME" 
                                 id="NAME"
+				autocomplete="off"
                                 value="<?php if(isset($_GET['NAME']))
                                     echo $_GET['NAME'];?>">
                             </div>
@@ -152,6 +153,7 @@
                                 class="form-control" 
                                 name="username" 
                                 id="username"
+				autocomplete="off"
                                 value="<?php if(isset($_GET['username']))
                                     echo $_GET['username'];?>">
                             </div>
@@ -163,6 +165,7 @@
                                 class="form-control" 
                                 name="email" 
                                 id="email"
+				autocomplete="off"
                                 value="<?php if(isset($_GET['email']))
                                     echo $_GET['email'];?>">
                             </div>
@@ -174,6 +177,7 @@
                                 name="password" 
                                 class="form-control" 
                                 id="password"
+				autocomplete="new-password"
                                 value="<?php if(isset($_GET['password']))
                                     echo $_GET['password'];?>">
                             </div>
