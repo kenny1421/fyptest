@@ -39,7 +39,10 @@
 		           class="form-control" 
 		           id="password"
 			   autocomplete="new-password">
-		    <input type="checkbox" onclick="myFunction()">Show Password
+		    <input class="form-check-input" type="checkbox" onclick="myFunction()">
+			  <label class="form-check-label" for="flexCheckDefault">
+			    Show Password
+			  </label>
 		  </div>
 		  <div class="mb-1">
 		    <label class="form-label">Select User Type:</label>
