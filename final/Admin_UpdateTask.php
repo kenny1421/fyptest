@@ -173,8 +173,10 @@ if(isset($_POST['submit'])){
 		  <br>
 
 
-
-            <button type="submit" class="btn btn-primary" name="submit">Update</button>
+	    <div class="d-grid gap-2 d-md-block">
+	    	<button type="button" class="btn btn-primary" name="submit">Update</button>
+		<a href="Admin_ManageTask.php"><button class="btn btn-danger">Cancel</button></a>
+	    </div>
         </form>
 
 </div>
