@@ -152,7 +152,7 @@
                   
                   
                  echo '<td>';
-                  if($status=="Activate")
+                  if($status=="Active")
                   {
                   echo '<a href="AccountStatus_Deactivate.php?id='.$id.'" >
                   <button class="btn btn-primary">Deactivate</button>
