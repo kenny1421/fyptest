@@ -132,7 +132,7 @@
                                 </div>
                             <?php } ?>
 				
-				<br>
+			
                             <div class="mb-3">
                                 <label for="NAME"  
 		                        class="form-label">Full Name</label>
