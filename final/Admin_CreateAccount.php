@@ -133,7 +133,7 @@
                             <?php } ?>
 				
 				<br>
-                            <div class= "form-group">
+                            <div class="mb-3">
                                 <label for="NAME"  
 		                        class="form-label">Full Name</label>
 		                        <input type="text" 
@@ -145,7 +145,7 @@
                             </div>
 
 
-                            <div class= "form-group">
+                            <div class="mb-3">
                                 <label for="username"  
 		                        class="form-label">Username</label>
 		                        <input type="text" 
@@ -156,7 +156,7 @@
                                     echo $_GET['username'];?>">
                             </div>
 
-                            <div class= "form-group">
+                            <div class="mb-3">
                                 <label for="email"  
 		                        class="form-label">Email</label>
 		                        <input type="email" 
@@ -167,7 +167,7 @@
                                     echo $_GET['email'];?>">
                             </div>
 
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label for="password" 
                                 class="form-label">Password</label>
                                 <input type="password" 
