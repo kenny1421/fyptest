@@ -161,11 +161,11 @@ if(isset($_POST['submit'])){
                       <label for="comment" class="form-label">Task Comment</label>
                       <input type="text" class="form-control" placeholder="Enter task comment" name="taskcomment" autocomplete="off">
                   </div>
-                  <br>      
-      
-      
-      
-                  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                  <br>
+		  <div class="d-grid gap-2 d-md-block">
+	    	  	<button type="submit" class="btn btn-primary" name="submit">Submit</button>
+		  	<a href="Admin_ManageTask.php"><button class="btn btn-danger" type="button">Cancel</button></a>
+	    	  </div>
               </form>
       
           </div>
