@@ -137,15 +137,15 @@
           if($result){
               while($row=mysqli_fetch_assoc($result)){
                   $id=$row['id'];
-                  $username=$row['username'];
                   $NAME=$row['name'];
+                  $usesrname=$row['username'];
                   $email=$row['email'];
                   $role=$row['role'];
                   $status=$row['status'];
                   echo ' <tr>';
                   echo '<th scope="row">'.$id.'</th>';
-                  echo'<td>'.$username.'</td>';
                   echo'<td>'.$NAME.'</td>';
+                  echo'<td>'.$username.'</td>';
                   echo'<td>'.$email.'</td>';
                   echo'<td>'.$role.'</td>';
                   echo'<td>'.$status.'</td>';
