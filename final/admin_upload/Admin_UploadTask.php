@@ -48,12 +48,12 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
     </div>
     <ul class="nav-links">
     <li>
-					<a href="../Admin_Task.php">
+					<a href="../Admin_ToDoList.php">
 						<i class='bx bx-task' ></i>
-						<span class="link_name">Task</span>
+						<span class="link_name">Todo List</span>
 					</a>
 					<ul class="sub-menu blank">
-						<li><a class="link_name" href="../Admin_Task.php">Task</a></li>
+						<li><a class="link_name" href="../Admin_ToDoList.php">Todo List</a></li>
 					</ul>
 				</li>
       <li>
@@ -69,11 +69,11 @@ $blobList = $blobClient->listBlobs($containerName, $listBlobsOptions);
         <div class="iocn-link">
           <a href="../Admin_ManageTask.php">
             <i class='bx bx-collection' ></i>
-            <span class="link_name">Assign Task</span>
+            <span class="link_name">Manage Task</span>
           </a>
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" href="../Admin_ManageTask.php">Assign Task</a></li>
+          <li><a class="link_name" href="../Admin_ManageTask.php">Manage Task</a></li>
         </ul>
       </li>
 
