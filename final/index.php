@@ -12,6 +12,7 @@
       <div class="container d-flex justify-content-center align-items-center"
       style="min-height: 100vh">
       	<form class="border shadow p-3 rounded"
+	      autocomplete="off"
       	      action="php/check-login.php" 
       	      method="post" 
       	      style="width: 450px;">
@@ -27,7 +28,8 @@
 		    <input type="text" 
 		           class="form-control" 
 		           name="username" 
-		           id="username">
+		           id="username"
+			   autocomplete="off">
 		  </div>
 		  <div class="mb-3">
 		    <label for="password" 
@@ -35,7 +37,9 @@
 		    <input type="password" 
 		           name="password" 
 		           class="form-control" 
-		           id="password">
+		           id="password"
+			   autocomplete="new-password">
+		    <input type="checkbox" onclick="myFunction()">Show Password
 		  </div>
 		  <div class="mb-1">
 		    <label class="form-label">Select User Type:</label>
@@ -54,6 +58,18 @@
       </div>
 </body>
 </html>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+
 <?php }else{
 	header("Location: home.php");
 } ?>
