@@ -32,7 +32,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['role
         	$row = mysqli_fetch_assoc($result);
         	if ($row['password'] === $password && $row['role'] == $role) {
         		
-				if($row['status'] == 'Activate'){
+				if($row['status'] == 'Active'){
 
 					$_SESSION['name'] = $row['name'];
 					$_SESSION['id'] = $row['id'];
@@ -40,7 +40,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['role
 					$_SESSION['username'] = $row['username'];
 					header("Location: ../home.php");
 				}else{
-					header("Location: ../index.php?error=Your account has been disabled. Contact Admin.");
+					header("Location: ../index.php?error=Your account has been deactivated. Contact Admin.");
 				}
 				
         	}else {
