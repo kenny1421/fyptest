@@ -123,7 +123,7 @@
             <div class="wrap">
                 <div class="card">
                     <!--Content STARTS HERE-->
-                    <div class ="container">
+                    <div class="container my-5">
                         <form action="php/create.php" method="post">
         
                             <?php if (isset($_GET['error'])){ ?>
