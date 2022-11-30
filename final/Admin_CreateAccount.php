@@ -200,7 +200,7 @@
                                 <option value="admin">Admin</option>
                             </select>
                                 <button type="create" name="create" class="btn btn-primary create_btn" onclick="clickMe()">Create</button>
-                                
+                                <br>
                         </form>
                     </div>
                     <!--Content ENDS HERE-->
