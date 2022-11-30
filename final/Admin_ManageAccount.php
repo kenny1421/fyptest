@@ -138,7 +138,7 @@
               while($row=mysqli_fetch_assoc($result)){
                   $id=$row['id'];
                   $NAME=$row['name'];
-                  $usesrname=$row['username'];
+                  $username=$row['username'];
                   $email=$row['email'];
                   $role=$row['role'];
                   $status=$row['status'];
