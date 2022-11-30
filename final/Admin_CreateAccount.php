@@ -131,7 +131,8 @@
                                     <?php echo $_GET['error']; ?>
                                 </div>
                             <?php } ?>
-
+				
+				<br>
                             <div class= "form-group">
                                 <label for="NAME"  
 		                        class="form-label">Full Name</label>
@@ -176,6 +177,16 @@
                                 value="<?php if(isset($_GET['password']))
                                     echo $_GET['password'];?>">
                             </div>
+				
+			    <div class="mb-3 form-check">
+			    	<input type="checkbox"
+				   class="form-check-input"
+				   id="showPassCheckBox"
+				   onclick="myFunction()">
+			    	<label class="form-check-label" for="flexCheckDefault">
+				    Show Password
+				</label>
+			    </div>
 
                             <div class="form-group">
                                 <label class="form-label">Select User Type:</label>
@@ -188,7 +199,7 @@
                                 <option value="manager">Manager</option>
                                 <option value="admin">Admin</option>
                             </select>
-                                <button type="create" name="create" class="btn btn-primary create_btn" onclick="clickMe()">create</button>
+                                <button type="create" name="create" class="btn btn-primary create_btn" onclick="clickMe()">Create</button>
                                 
                         </form>
                     </div>
@@ -197,6 +208,17 @@
             </div>
         </div>
     </section>
+	
+<script>
+function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
 
   <script>
   let arrow = document.querySelectorAll(".arrow");
