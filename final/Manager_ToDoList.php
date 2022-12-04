@@ -106,6 +106,7 @@
 										<th scope="col">Annotators Name</th>
 										<th scope="col">Annotators Email</th>
 										<th scope="col">Task Comment</th>
+										<th scope="col">Due Date</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -120,12 +121,14 @@
 										$name=$row['name'];
 										$email=$row['email'];
 										$taskcomment=$row['taskcomment'];
+										$date=$row['date'];
 										echo ' <tr>
 										<th scope="row">'.$id.'</th>
 										<td>'.$taskdescription.'</td>
 										<td>'.$name.'</td>
 										<td>'.$email.'</td>
 										<td>'.$taskcomment.'</td>
+										<td>'.$date.'</td>
 										<td> 
 
 									</td>
