@@ -1,6 +1,6 @@
 <?php 
 
-$query = "SELECT id, name FROM users WHERE role='user' ";
+
     session_start();
     if (isset($_SESSION['username']) && isset($_SESSION['id'])) { 
 include 'db_conn.php';
@@ -152,10 +152,11 @@ if(isset($_POST['submit'])){
                   <div class="mb-3">
                       <label for="name" class="form-label">Annotators Name</label>
                    <?php
+                $query = "SELECT name FROM users WHERE role='user' ";
                 if ($r_set= $conn->query($query)){
                       echo"<SELECT name=name class='form-control'>";
                     while ($row=$r_set->fetch_assoc()){
-                echo "<option value=$row[id]>$row[name]</option>";
+                echo "<option value=$row[name]>$row[name]</option>";
                 }
                 echo"</select>";
                     }
