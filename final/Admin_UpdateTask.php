@@ -1,4 +1,6 @@
 <?php
+
+
 session_start();
 if (isset($_SESSION['username']) && isset($_SESSION['id'])) { 
 include 'db_conn.php';
@@ -10,6 +12,7 @@ $taskdescription=$row['taskdescription'];
 $name=$row['name'];
 $email=$row['email'];
 $taskcomment=$row['taskcomment'];
+$date=$row['date'];
 
 
 if(isset($_POST['submit'])){
@@ -17,12 +20,10 @@ if(isset($_POST['submit'])){
     $name=$_POST['name'];
     $email=$_POST['email'];
     $taskcomment=$_POST['taskcomment'];
-
-
+    $date=$_POST['date'];
 
     $sql="update `crud` set id=$id,taskdescription='$taskdescription',
-    name='$name',email='$email',taskcomment='$taskcomment'where id=$id";
-
+    name='$name',email='$email',taskcomment='$taskcomment',date='$date'where id=$id";
     $result=mysqli_query($conn,$sql);
 
     if($result){
@@ -157,8 +158,16 @@ if(isset($_POST['submit'])){
             </div>
             <div class="mb-3">
                 <label for="name" class="form-label">Annotators Name</label>
-                <input type="text" class="form-control" placeholder="Enter annotators name" name="name" autocomplete="off" 
-                value=<?php echo $name;?>>
+                <?php
+                $query = "SELECT name FROM users WHERE role='user' ";
+                if ($r_set= $conn->query($query)){
+                      echo"<SELECT name=name class='form-control'>";
+                    while ($row=$r_set->fetch_assoc()){
+                echo "<option value=$row[name]>$row[name]</option>";
+                }
+                echo"</select>";
+                    }
+                    ?>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
@@ -169,6 +178,12 @@ if(isset($_POST['submit'])){
                 <label for="comment" class="form-label">Task Comment</label>
                 <input type="text" class="form-control" placeholder="Enter task comment" name="taskcomment" autocomplete="off"
                 value=<?php echo $taskcomment;?>>
+            </div>
+
+            <div class="form-group">
+                <label>Due Date</label>
+                <input type="date" class="form-control" placeholder="Enter due date" name="date" autocomplete="off"
+                value=<?php echo $date;?>>
             </div>
 		  <br>
 
