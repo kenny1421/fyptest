@@ -1,4 +1,6 @@
 <?php 
+
+$query = "SELECT id, name FROM users WHERE role='user' ";
     session_start();
     if (isset($_SESSION['username']) && isset($_SESSION['id'])) { 
 include 'db_conn.php';
@@ -8,12 +10,12 @@ if(isset($_POST['submit'])){
     $name=$_POST['name'];
     $email=$_POST['email'];
     $taskcomment=$_POST['taskcomment'];
-    
+    $date=$_POST['date'];
 
 
 
-    $sql="insert into `crud`(taskdescription,name,email,taskcomment)
-    values('$taskdescription','$name','$email','$taskcomment')";
+    $sql="insert into `crud`(taskdescription,name,email,taskcomment,date)
+    values('$taskdescription','$name','$email','$taskcomment','$date')";
 
     $result=mysqli_query($conn,$sql);
 
@@ -149,7 +151,15 @@ if(isset($_POST['submit'])){
                   
                   <div class="mb-3">
                       <label for="name" class="form-label">Annotators Name</label>
-                      <input type="text" class="form-control" placeholder="Enter annotators name" name="name" autocomplete="off">
+                   <?php
+                if ($r_set= $conn->query($query)){
+                      echo"<SELECT name=name class='form-control'>";
+                    while ($row=$r_set->fetch_assoc()){
+                echo "<option value=$row[id]>$row[name]</option>";
+                }
+                echo"</select>";
+                    }
+                    ?>
                   </div>
                   
                   <div class="mb-3">
@@ -160,6 +170,10 @@ if(isset($_POST['submit'])){
                   <div class="mb-3">
                       <label for="comment" class="form-label">Task Comment</label>
                       <input type="text" class="form-control" placeholder="Enter task comment" name="taskcomment" autocomplete="off">
+                  </div>
+                  <div class="form-group">
+                      <label>Due Date</label>
+                      <input type="date" class="form-control" placeholder="Eneter Due Date" name="date" autocomplete="off">
                   </div>
                   <br>
 		  <div class="d-grid gap-2 d-md-block">
